@@ -1,0 +1,27 @@
+<header>
+    <div class = "logo-and-language">
+      <div class = "logo-images">
+        <img class ="AD-letters" src="/assets/AD-logo.png" width="48" height="48"  alt="AD-letters">
+        <img class = "KAAD-logo" src="/assets/KAAD-logo.png" width="200" height="48" alt="Adrian Dzienkiewicz Kancelaria Adwokacka">
+      </div>
+      <div class="languages">
+        <ul class="languages-list">
+          <li class="language-list-element"><a href="#"><img class = "language-flag" src="/assets/flags/f_pl_r.png" alt="Polish language"></a></li>
+          <li class="language-list-element"><a href="#"><img class = "language-flag" src="/assets/flags/f_uk_r.png" alt="English language"></a></li>
+          <li class="language-list-element"><a href="#"><img class = "language-flag" src="/assets/flags/f_ua_r.png" alt="Ukrainian language"></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class ="navigation-list-div">
+      <nav>
+        <ul class ="navigation-list">
+          <li *ngFor="let link of links; let i = index"
+              class="navigation-list-element"
+              [class.active]="i === activeLinkIndex"
+              (click)="makeActive(i)">
+            <a href="{{ link.url }}">{{ link.label }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+</header>
