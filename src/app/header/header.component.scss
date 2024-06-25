@@ -1,97 +1,104 @@
-header{
+header {
   width: auto;
 }
 
-.logo-and-language{
+.logo-and-language {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  //height: 10vh;
-  height: 3.5rem;
-  padding-left: 0.5rem;
-  padding-right: 3rem;
-  box-shadow: 0 2rem 2.5rem rgba(0, 0, 0, 0.2);
+  height: 5rem; /* Increased from 3.5rem */
+  padding-left: 5vw; /* Increased for more padding on the sides */
+  padding-right: 6vw;
+  box-shadow: 0 4rem 5rem rgba(0, 0, 0, 0.2); /* More prominent shadow */
   background: #ffffff;
 }
 
-.logo-images{
+.logo-images {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-right: 5vw;
 }
 
-.AD-letters{
-  max-width: 1.5rem;
+.AD-letters {
+  max-width: 3rem; /* Increased from 1.5rem */
   height: auto;
-  padding-right: 5px;
+  padding-right: 10px; /* More padding */
 }
 
-.KAAD-logo{
+.KAAD-logo {
   height: auto;
-  max-width: 100rem;
+  width: 20rem;
+
 }
 
 ul.languages-list {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem; /* Increased gap */
+}
 
+.languages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .language-list-element {
-  width: 1rem;
-  height: 1rem;
+  width: 2rem; /* Increased from 1rem */
+  height: 2rem; /* Increased from 1rem */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.language-flag{
-  max-width: 1rem;
+.language-flag {
+  max-width: 2rem; /* Increased from 1rem */
   height: auto;
-  padding: 1.5px;
+  padding: 3px; /* Increased padding */
   background: rgba(0, 0, 0, 0.3);
 }
 
-.navigation-list-div{
-  width: 22rem;
-  max-width: 22rem;
-  height: 1.7rem;
-  margin-left: 2rem;
+.navigation-list-div {
+  width: 50rem; /* Increased from 25rem */
+  max-width: 50rem;
+  height: 3.4rem; /* Increased from 1.7rem */
+  margin-left: 4vw; /* More margin */
   display: flex;
   align-items: center;
   justify-content: center;
   background: #efefef;
-  border-bottom-left-radius: 0.7rem;
-  border-bottom-right-radius: 0.7rem;
+  border-bottom-left-radius: 1.4rem; /* Increased from 0.7rem */
+  border-bottom-right-radius: 1.4rem;
 }
 
-.navigation-list{
+.navigation-list {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem; /* Increased gap */
   margin: 0;
   width: 100%;
 }
 
-.navigation-list-element{
+.navigation-list-element {
   display: inline;
-  padding-right: 5px;
+  padding-right: 10px; /* More padding */
 }
 
-.navigation-list-element a{
+.navigation-list-element a {
+  font-size: 2.4rem; /* Increased from 1.2rem */
   text-decoration: none;
   color: #333;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
-.navigation-list-element:not(:last-child){
-  border-right: 1px solid black;
+.navigation-list-element:not(:last-child) {
+  border-right: 2px solid black; /* Thicker border */
 }
 
-.navigation-list-element.active a{
-  color: #03422c
+.navigation-list-element.active a {
+  color: #03422c;
 }
