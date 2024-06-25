@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
 
 @Component({
@@ -21,6 +21,14 @@ export class HeaderComponent {
   ];
 
   activeLinkIndex = -1;
+
+  isScrolled = false;
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const scrollOffset = window.scrollY + document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.isScrolled = scrollOffset > 150;
+  }
 
   public makeActive(index: number) {
     this.activeLinkIndex = index;

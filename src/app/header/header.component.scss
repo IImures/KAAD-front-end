@@ -1,5 +1,10 @@
+app-header{
+  width: 100%;
+}
+
 header {
-  width: auto;
+  width: 100%;
+  position: fixed;
 }
 
 .logo-and-language {
@@ -11,6 +16,11 @@ header {
   padding-right: 6vw;
   box-shadow: 0 4rem 5rem rgba(0, 0, 0, 0.2); /* More prominent shadow */
   background: #ffffff;
+  transition: padding-left 0.3s ease;
+}
+
+header.scrolled .logo-and-language {
+  padding-left: 2vw;
 }
 
 .logo-images {
@@ -24,12 +34,22 @@ header {
   max-width: 3rem; /* Increased from 1.5rem */
   height: auto;
   padding-right: 10px; /* More padding */
+  transition: transform 0.3s ease;
+}
+
+header.scrolled .AD-letters{
+
 }
 
 .KAAD-logo {
   height: auto;
   width: 20rem;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 
+header.scrolled .KAAD-logo{
+  opacity: 0;
 }
 
 ul.languages-list {
@@ -56,12 +76,14 @@ ul.languages-list {
 .language-flag {
   max-width: 2rem; /* Increased from 1rem */
   height: auto;
-  padding: 3px; /* Increased padding */
-  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 4px black;
+  //padding: 3px; /* Increased padding */
+  //
+  //background: rgba(0, 0, 0, 0.3);
 }
 
 .navigation-list-div {
-  width: 50rem; /* Increased from 25rem */
+  width: 40rem; /* Increased from 25rem */
   max-width: 50rem;
   height: 3.4rem; /* Increased from 1.7rem */
   margin-left: 4vw; /* More margin */
@@ -71,6 +93,15 @@ ul.languages-list {
   background: #efefef;
   border-bottom-left-radius: 1.4rem; /* Increased from 0.7rem */
   border-bottom-right-radius: 1.4rem;
+  position: relative;
+  left: 0;
+  top: 0;
+  transition: background 0.3s ease, top 0.3s ease;
+}
+
+header.scrolled .navigation-list-div{
+  background: transparent;
+  top: -4rem;
 }
 
 .navigation-list {
@@ -88,7 +119,7 @@ ul.languages-list {
 }
 
 .navigation-list-element a {
-  font-size: 2.4rem; /* Increased from 1.2rem */
+  font-size: 1.7rem; /* Increased from 1.2rem */
   text-decoration: none;
   color: #333;
   font-weight: bold;
@@ -97,6 +128,19 @@ ul.languages-list {
 
 .navigation-list-element:not(:last-child) {
   border-right: 2px solid black; /* Thicker border */
+  transition: border-right 0.3s ease;
+}
+
+header.scrolled .navigation-list-element a{
+  color: #0d3427;
+}
+
+header.scrolled .navigation-list-element:not(:last-child) {
+  border-right: 2px solid #023b28;
+}
+
+header.scrolled .navigation-list-element.active a{
+  color: #023b28
 }
 
 .navigation-list-element.active a {
