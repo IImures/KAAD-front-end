@@ -1,0 +1,32 @@
+<footer>
+  <div class="logo-images">
+    <img class="KD-logo" src="/assets/AD-logo.png" alt ="KD letters">
+    <img class="KAAD-logo" src="/assets/KAAD-logo.png" alt="Adrian Dzienkiewicz Kancelaria Adwokacka">
+  </div>
+  <div class="navigation-list-div">
+    <nav>
+      <ul class="navigation-list">
+        <li *ngFor="let link of links;"
+            class = "navigation-list-element"
+        >
+          <img src="/assets/icons/link.png" alt="link icon"><a href="{{link.url}}}">{{link.label}}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class ="last-row">
+    <div >
+<!--      <img src="/assets/icons/link.png">-->
+<!--      <img src="/assets/icons/link.png">-->
+<!--      <img src="/assets/icons/link.png">-->
+    </div>
+    <div class="text-in-corner">
+      <p>
+        2024 Kancelaria Prawna.
+      </p>
+      <p>
+        Wszystkie prawa zastrzeżone
+      </p>
+    </div>
+  </div>
+</footer>
