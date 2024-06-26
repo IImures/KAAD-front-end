@@ -27,7 +27,7 @@ export class HeaderComponent {
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     const scrollOffset = window.scrollY + document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isScrolled = scrollOffset > 150;
+    this.isScrolled = scrollOffset > 800;
   }
 
   public makeActive(index: number) {

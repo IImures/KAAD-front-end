@@ -1,17 +1,14 @@
-app-header{
-  width: 100%;
-}
-
 header {
   width: 100%;
   position: fixed;
+  height: $header-height;
 }
 
 .logo-and-language {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 5rem; /* Increased from 3.5rem */
+  height: 100%;
   padding-left: 5vw; /* Increased for more padding on the sides */
   padding-right: 6vw;
   box-shadow: 0 4rem 5rem rgba(0, 0, 0, 0.2); /* More prominent shadow */
@@ -77,9 +74,6 @@ ul.languages-list {
   max-width: 2rem; /* Increased from 1rem */
   height: auto;
   box-shadow: 0 0 4px black;
-  //padding: 3px; /* Increased padding */
-  //
-  //background: rgba(0, 0, 0, 0.3);
 }
 
 .navigation-list-div {
@@ -119,11 +113,12 @@ header.scrolled .navigation-list-div{
 }
 
 .navigation-list-element a {
-  font-size: 1.7rem; /* Increased from 1.2rem */
+  font-size: 1.6rem; /* Increased from 1.2rem */
   text-decoration: none;
   color: #333;
-  font-weight: bold;
+  font-weight: 600;
   transition: color 0.3s ease;
+  font-family: Noto-Serif, serif;
 }
 
 .navigation-list-element:not(:last-child) {
@@ -132,7 +127,8 @@ header.scrolled .navigation-list-div{
 }
 
 header.scrolled .navigation-list-element a{
-  color: #0d3427;
+  //color: #002a2b;
+  color: #002a17;
 }
 
 header.scrolled .navigation-list-element:not(:last-child) {
@@ -140,9 +136,10 @@ header.scrolled .navigation-list-element:not(:last-child) {
 }
 
 header.scrolled .navigation-list-element.active a{
-  color: #023b28
+  color: #286653;
 }
 
 .navigation-list-element.active a {
-  color: #03422c;
+  //color: #003e2b;
+  color: #286653;
 }

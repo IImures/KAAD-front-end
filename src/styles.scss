@@ -1,3 +1,12 @@
+$header-height: 5rem;
+
+
+
 body{
   margin: 0;
+}
+
+@font-face {
+  font-family: 'Noto-Serif';
+  src: url('/assets/fonts/Noto_Serif_Display/NotoSerifDisplay.ttf');
 }
