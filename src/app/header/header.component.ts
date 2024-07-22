@@ -1,12 +1,14 @@
 import {Component, HostListener} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     NgOptimizedImage,
-    NgForOf
+    NgForOf,
+    RouterLink
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -14,10 +16,10 @@ import {NgForOf, NgOptimizedImage} from "@angular/common";
 export class HeaderComponent {
 
   links = [
-    { label: 'O nas', url: '#about' },
-    { label: 'Specjalizacje', url: '#spec' },
-    { label: 'Aktualności', url: '#news' },
-    { label: 'Kontakt', url: '#contact' }
+    { label: 'O nas', url: 'about' },
+    { label: 'Specjalizacje', url: 'spec' },
+    { label: 'Aktualności', url: 'news' },
+    { label: 'Kontakt', url: 'contact' }
   ];
 
   activeLinkIndex = -1;

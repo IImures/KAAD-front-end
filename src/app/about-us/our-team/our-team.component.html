@@ -1,0 +1,20 @@
+<h2>{{title}}</h2>
+<ul>
+  <li *ngFor="let member of teamMembers; let e = even"
+    [class]="e ? 'even' : 'odd'"
+  >
+    <div class = 'member' [class]="e ? 'even' : 'odd'"  >
+      <div>
+        <img src ="{{member.img}}" class = 'member-icon'>
+      </div>
+      <div class = 'member-info'>
+          <strong>{{member.fullName}}</strong>
+          <p>{{member.description}}</p>
+        <div class='member-links'>
+          <a href="tel:{{member.phoneNumber}}}"><img class="icon" src="/assets/icons/phone-icon.png"></a>
+          <a href="mailto:{{member.email}}}"><img class='icon' src="/assets/icons/mail-icon.png"></a>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

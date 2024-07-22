@@ -1,3 +1,4 @@
+<div>
 <header [class.scrolled]="isScrolled">
     <div class = "logo-and-language">
       <div class = "logo-images">
@@ -19,9 +20,10 @@
               class="navigation-list-element"
               [class.active]="i === activeLinkIndex"
               (click)="makeActive(i)">
-            <a href="{{ link.url }}">{{ link.label }}</a>
+            <a [routerLink]="link.url">{{ link.label }}</a>
           </li>
         </ul>
       </nav>
     </div>
 </header>
+</div>

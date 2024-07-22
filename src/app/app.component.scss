@@ -1,4 +1,8 @@
+@import "../styles.scss";
+
 main{
-  height: 2000px;
-  padding-top: 5rem;
+  //height: 2000px;
+  padding-top: $header-height;
+  padding-right: $header-height;
+  padding-left: $header-height;
 }

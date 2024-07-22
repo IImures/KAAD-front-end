@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 header {
   width: 100%;
   position: fixed;
@@ -8,9 +10,9 @@ header {
   flex-direction: row;
   justify-content: space-between;
   height: 100%;
-  padding-left: 5vw; /* Increased for more padding on the sides */
+  padding-left: 5vw;
   padding-right: 6vw;
-  box-shadow: 0 4rem 5rem rgba(0, 0, 0, 0.2); /* More prominent shadow */
+  box-shadow: 0 4rem 5rem rgba(0, 0, 0, 0.2);
   background: #ffffff;
   transition: padding-left 0.3s ease;
 }
