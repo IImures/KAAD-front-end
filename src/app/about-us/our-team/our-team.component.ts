@@ -1,12 +1,14 @@
 import {Component, Input} from '@angular/core';
 import {TeamMember} from "../about-us.component";
-import {NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-our-team',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    NgClass,
+    NgOptimizedImage
   ],
   templateUrl: './our-team.component.html',
   styleUrl: './our-team.component.scss'

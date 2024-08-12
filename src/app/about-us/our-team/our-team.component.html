@@ -1,20 +1,67 @@
-<h2>{{title}}</h2>
-<ul>
-  <li *ngFor="let member of teamMembers; let e = even"
-    [class]="e ? 'even' : 'odd'"
-  >
-    <div class = 'member' [class]="e ? 'even' : 'odd'"  >
-      <div>
-        <img src ="{{member.img}}" class = 'member-icon'>
+<!--<h2 class="text-center my-4">{{title}}</h2>-->
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-12 col-md-6 mb-4">-->
+<!--      <div class="d-flex flex-column flex-md-row align-items-center">-->
+<!--        <div class="member-img">-->
+<!--          <img src="{{teamMembers[0].img}}" class="member-icon img-fluid">-->
+<!--        </div>-->
+<!--        <div class="member-info text-center text-md-left">-->
+<!--          <strong>{{teamMembers[0].fullName}}</strong>-->
+<!--          <p>{{teamMembers[0].description}}</p>-->
+<!--          <div class="member-links mt-2">-->
+<!--            <a href="tel:{{teamMembers[0].phoneNumber}}"><img class="icon img-fluid" src="/assets/icons/phone-icon.png"></a>-->
+<!--            <a href="mailto:{{teamMembers[0].email}}"><img class="icon img-fluid" src="/assets/icons/mail-icon.png"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-12 col-md-6 mb-4">-->
+<!--      <div class="d-flex flex-column flex-row-reverse align-items-center">-->
+<!--        <div class="member-img">-->
+<!--          <img src="{{teamMembers[1].img}}" class="member-icon img-fluid">-->
+<!--        </div>-->
+<!--        <div class="member-info text-center text-md-left">-->
+<!--          <strong>{{teamMembers[1].fullName}}</strong>-->
+<!--          <p>{{teamMembers[1].description}}</p>-->
+<!--          <div class="member-links mt-2">-->
+<!--            <a href="tel:{{teamMembers[1].phoneNumber}}"><img class="icon img-fluid" src="/assets/icons/phone-icon.png"></a>-->
+<!--            <a href="mailto:{{teamMembers[1].email}}"><img class="icon img-fluid" src="/assets/icons/mail-icon.png"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<h2 class="text-center my-4">{{title}}</h2>
+<div class ="d-flex justify-content-center mb-5">
+  <div class="row d-flex flex-column flex-xl-row align-items-center">
+    <div class="col">
+      <img src="{{teamMembers[0].img}}" class="member-icon img-fluid">
+    </div>
+    <div class="col d-flex flex-column justify-content-around h-100">
+      <div class="member-info text-start">
+        <strong>{{teamMembers[0].fullName}}</strong>
+        <p>{{teamMembers[0].description}}</p>
+        <div class="member-links mt-2">
+          <a href="tel:{{teamMembers[0].phoneNumber}}"><img class="icon img-fluid" src="/assets/icons/phone-icon.png"></a>
+          <a href="mailto:{{teamMembers[0].email}}"><img class="icon img-fluid" src="/assets/icons/mail-icon.png"></a>
+        </div>
       </div>
-      <div class = 'member-info'>
-          <strong>{{member.fullName}}</strong>
-          <p>{{member.description}}</p>
-        <div class='member-links'>
-          <a href="tel:{{member.phoneNumber}}}"><img class="icon" src="/assets/icons/phone-icon.png"></a>
-          <a href="mailto:{{member.email}}}"><img class='icon' src="/assets/icons/mail-icon.png"></a>
+
+      <div class="member-info text-end mt-3 m-xl-0">
+        <strong>{{teamMembers[1].fullName}}</strong>
+        <p>{{teamMembers[1].description}}</p>
+        <div class="member-links mt-2">
+          <a href="tel:{{teamMembers[1].phoneNumber}}"><img class="icon img-fluid" src="/assets/icons/phone-icon.png"></a>
+          <a href="mailto:{{teamMembers[1].email}}"><img class="icon img-fluid" src="/assets/icons/mail-icon.png"></a>
         </div>
       </div>
     </div>
-  </li>
-</ul>
+    <div class="col">
+      <img src="{{teamMembers[1].img}}" class="member-icon img-fluid">
+    </div>
+  </div>
+</div>

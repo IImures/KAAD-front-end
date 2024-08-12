@@ -1,66 +1,70 @@
-h2{
-  display : flex;
-  justify-content: center;
+h2 {
   font-size: 3rem;
-  font-family: Open-Sans, serif;
+  font-family: 'Open-Sans', serif;
 }
 
-ul{
-  list-style: none;
+ul {
   padding-bottom: 2.5rem;
 }
 
-p{
+p {
   margin: 0;
   font-weight: bolder;
   color: gray;
 }
 
-.member-info{
-  font-family: Open-Sans serif;
+.member-info {
+  font-family: 'Open-Sans', serif;
   font-size: 1.5rem;
 }
 
-strong{
+strong {
   font-size: 2rem;
 }
 
-.member-icon{
-  width:350px;
-  height:100%;
-  padding-right: 1rem;
-  padding-left: 1rem;
+.member-icon {
+  min-width: 50%;
+  width: 25rem;
+  object-fit: cover;
+  padding: 1rem;
 }
 
-.member-links{
-  padding-left: 0.7rem;
-  padding-right: 0.7rem;
+.member-links {
   color: gray;
 }
 
-.icon{
-  width:32px;
-  height:32px;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+.icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 0.5rem;
 }
 
-.even{
-  display: flex;
+.even {
   flex-direction: row;
 }
 
-.odd{
-  display: flex;
+.align-self-end {
   flex-direction: row-reverse;
 }
 
-.odd .member-info{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+.align-self-end .member-info {
+  text-align: right;
 }
 
-.member{
-  margin: -2rem;
+//.member {
+//  margin: 0;
+//  border: 1px solid #ddd;
+//  border-radius: 8px;
+//}
+
+@media (max-width: 767.98px) {
+  //.even,
+  //.odd {
+  //  flex-direction: column;
+  //  text-align: center;
+  //}
+
+  //.odd .member-info {
+  //  text-align: center;
+  //}
 }

@@ -1,29 +1,18 @@
 section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
 
-article {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
 h2 {
-  flex-basis: 20%;
   font-size: 2.5em;
   padding: 20px;
   margin: 0;
-  text-align: center;
-  align-content: center;
   font-family: Open-Sans;
   font-weight: bold;
   letter-spacing: -0.2px;
 }
-p{
+
+p {
   font-family: Open-Sans;
   letter-spacing: 0.5px;
   line-height: 2rem;
@@ -31,16 +20,22 @@ p{
   font-weight: 450;
 }
 
-.article-content{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .lawyer-img {
   object-fit: cover;
-  height: auto;
   width: 20rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
+}
+
+@media (max-width: 767.98px) {
+  h2 {
+    font-size: 2em;
+  }
+
+  .lawyer-img {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 }
