@@ -17,7 +17,7 @@ export class HeaderComponent {
 
   links = [
     { label: 'O nas', url: 'about' },
-    { label: 'Specjalizacje', url: 'spec' },
+    { label: 'Specjalizacje', url: 'specializations' },
     { label: 'Aktualności', url: 'news' },
     { label: 'Kontakt', url: 'contact' }
   ];

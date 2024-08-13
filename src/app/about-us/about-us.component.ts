@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MainTextSectionComponent} from "./main-text-section/main-text-section.component";
 import {OurTeamComponent} from "./our-team/our-team.component";
+import {TeamMember} from "../interfaces/team-member";
 
 @Component({
   selector: 'app-about-us',
@@ -39,10 +40,3 @@ export class AboutUsComponent {
 
 }
 
-export interface TeamMember{
-  fullName: string;
-  description: string;
-  phoneNumber?: string;
-  email: string;
-  img: string;
-}
