@@ -1,0 +1,15 @@
+.card{
+  //background-color: rgba(0,0,0,0);
+  border: 5px solid #023b28;
+  border-radius: 2rem;
+  //z-index: -1; //WTF?? Header beneath this shit, if without z-index
+}
+a{
+  text-decoration: none;
+  color: #023b28;
+}
+h5{
+  font-family: Noto-Serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}

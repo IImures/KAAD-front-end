@@ -1,0 +1,28 @@
+
+.support-banner {
+  background-color: #2e4b3a; /* Dark green background color */
+  color: #ffffff; /* White text color */
+  font-family: Open-Sans, Arial, sans-serif;
+  font-size: 1.5rem;
+}
+
+.btn-custom {
+  background-color: #f0f0f0; /* Light grey background */
+  color: #000000; /* Black text color */
+  font-weight: bold;
+  border-radius: 50px; /* Rounded button */
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+h5{
+  font-weight: 700;
+}
+
+.arrow {
+  margin-left: 10px;
+  font-weight: normal;
+}
