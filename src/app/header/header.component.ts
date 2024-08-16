@@ -1,6 +1,6 @@
 import {Component, HostListener} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +8,8 @@ import {RouterLink} from "@angular/router";
   imports: [
     NgOptimizedImage,
     NgForOf,
-    RouterLink
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

@@ -20,7 +20,7 @@
               class="navigation-list-element"
               [class.active]="i === activeLinkIndex"
               (click)="makeActive(i)">
-            <a [routerLink]="link.url">{{ link.label }}</a>
+            <a [routerLink]="link.url" routerLinkActive="true">{{ link.label }}</a>
           </li>
         </ul>
       </nav>
