@@ -6,6 +6,12 @@ header {
   z-index: 1000; // Header beneath cards????
 }
 
+@media (max-width: 524px) {
+ .KAAD-logo{
+   display: none;
+ }
+}
+
 .logo-and-language {
   display: flex;
   flex-direction: row;
@@ -30,9 +36,9 @@ header.scrolled .logo-and-language {
 }
 
 .AD-letters {
-  max-width: 3rem; /* Increased from 1.5rem */
+  max-width: 3rem;
   height: auto;
-  padding-right: 10px; /* More padding */
+  padding-right: 10px;
   transition: transform 0.3s ease;
 }
 
@@ -55,7 +61,7 @@ ul.languages-list {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 1rem; /* Increased gap */
+  gap: 1rem;
 }
 
 .languages {
@@ -65,35 +71,39 @@ ul.languages-list {
 }
 
 .language-list-element {
-  width: 2rem; /* Increased from 1rem */
-  height: 2rem; /* Increased from 1rem */
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .language-flag {
-  max-width: 2rem; /* Increased from 1rem */
+  max-width: 2rem;
   height: auto;
   box-shadow: 0 0 4px black;
 }
 
+
+
 .navigation-list-div {
-  width: 40rem; /* Increased from 25rem */
+  width: 40rem;
   max-width: 50rem;
-  height: 3.4rem; /* Increased from 1.7rem */
-  margin-left: 4vw; /* More margin */
+  height: 3.4rem;
+  margin-left: 4vw;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #efefef;
-  border-bottom-left-radius: 1.4rem; /* Increased from 0.7rem */
+  border-bottom-left-radius: 1.4rem;
   border-bottom-right-radius: 1.4rem;
   position: relative;
   left: 0;
   top: 0;
   transition: background 0.3s ease, top 0.3s ease;
 }
+
+
 
 header.scrolled .navigation-list-div{
   background: transparent;
@@ -104,18 +114,18 @@ header.scrolled .navigation-list-div{
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 1rem; /* Increased gap */
+  gap: 1rem;
   margin: 0;
   width: 100%;
 }
 
 .navigation-list-element {
   display: inline;
-  padding-right: 10px; /* More padding */
+  padding-right: 10px;
 }
 
 .navigation-list-element a {
-  font-size: 1.6rem; /* Increased from 1.2rem */
+  font-size: 1.6rem;
   text-decoration: none;
   color: #333;
   font-weight: 700;
@@ -123,13 +133,32 @@ header.scrolled .navigation-list-div{
   font-family:  Noto-Serif, serif;
 }
 
+@media (max-width: 650px){
+  .navigation-list-div{
+    margin-left: 15px;
+    width: 28rem;
+  }
+  .navigation-list-element a{
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px){
+  .navigation-list-div{
+    margin-left: 1vw;
+    width: 24rem;
+  }
+  .navigation-list-element a{
+    font-size: 0.8rem;
+  }
+}
+
 .navigation-list-element:not(:last-child) {
-  border-right: 2px solid black; /* Thicker border */
+  border-right: 2px solid black;
   transition: border-right 0.3s ease;
 }
 
 header.scrolled .navigation-list-element a{
-  //color: #002a2b;
   color: #002a17;
 }
 
@@ -142,6 +171,5 @@ header.scrolled .navigation-list-element.active a{
 }
 
 .navigation-list-element.active a {
-  //color: #003e2b;
   color: #286653;
 }

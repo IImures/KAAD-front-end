@@ -34,6 +34,8 @@ export class HeaderComponent {
     if (window.innerWidth > minWidth) {
       const scrollOffset = window.scrollY + document.documentElement.scrollTop || document.body.scrollTop || 0;
       this.isScrolled = scrollOffset > 800;
+    }else{
+      this.isScrolled = false;
     }
   }
 
