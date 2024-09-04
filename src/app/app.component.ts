@@ -1,7 +1,7 @@
-import {Component, ContentChild, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {HeaderComponent} from "./header/header.component";
-import {FooterComponent} from "./footer/footer.component";
+import {HeaderComponent} from "./pages/header/header.component";
+import {FooterComponent} from "./pages/footer/footer.component";
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,5 @@ import {FooterComponent} from "./footer/footer.component";
 })
 export class AppComponent {
   title = 'kancelaria-adwokacka';
-  // @ViewChild('test', {static : true}) testElement!: ElementRef;
-  //
-  // ngOnInit(){
-  //   this.testElement.nativeElement.innerText ="test";
-  //   console.log(this.testElement);
-  // }
+
 }
