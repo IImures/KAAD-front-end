@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import {AboutUsComponent} from "./about-us/about-us.component";
-import {SpecializationsComponent} from "./specializations/specializations.component";
-import {ContactComponent} from "./contact/contact.component";
-import {BlogComponent} from "./blog/blog.component";
+import {AboutUsComponent} from "./pages/about-us/about-us.component";
+import {SpecializationsComponent} from "./pages/specializations/specializations.component";
+import {ContactComponent} from "./pages/contact/contact.component";
+import {BlogComponent} from "./pages/blog/blog.component";
 
 export const routes: Routes = [
 
@@ -13,19 +13,23 @@ export const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutUsComponent
+    component: AboutUsComponent,
+    title: 'O nas'
   },
   {
     path: 'specializations',
-    component: SpecializationsComponent
+    component: SpecializationsComponent,
+    title: 'Specjalizacje'
   },
   {
     path: 'contact',
-    component: ContactComponent
+    component: ContactComponent,
+    title: 'Kontakt'
   },
   {
     path: 'blog',
-    component: BlogComponent
+    component: BlogComponent,
+    title: 'Blog'
   }
 
 ];
