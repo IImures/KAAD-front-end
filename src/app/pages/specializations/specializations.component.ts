@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {SpecializationCard} from "../interfaces/specialization-card";
+import {SpecializationCard} from "../../interfaces/specialization-card";
 import {CardComponent} from "./card/card.component";
 import {NgForOf} from "@angular/common";
 import {ContactUsComponent} from "./contact-us/contact-us.component";

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MainTextSectionComponent} from "./main-text-section/main-text-section.component";
 import {OurTeamComponent} from "./our-team/our-team.component";
-import {TeamMember} from "../interfaces/team-member";
+import {TeamMember} from "../../interfaces/team-member";
 
 @Component({
   selector: 'app-about-us',

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SpecializationCard} from "../../interfaces/specialization-card";
+import {SpecializationCard} from "../../../interfaces/specialization-card";
 import {NgOptimizedImage} from "@angular/common";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 

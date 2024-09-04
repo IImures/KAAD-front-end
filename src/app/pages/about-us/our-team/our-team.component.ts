@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgClass, NgForOf, NgOptimizedImage} from "@angular/common";
-import {TeamMember} from "../../interfaces/team-member";
+import {TeamMember} from "../../../interfaces/team-member";
 
 @Component({
   selector: 'app-our-team',
