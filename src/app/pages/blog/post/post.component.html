@@ -1,16 +1,18 @@
-<div class="p-4 blog-item rounded-5">
+<div class="p-4 blog-item rounded-5"
+  id="'p-'{{post.postId}}"
+>
   <div class ='d-flex flex-row'>
     <div class ='author-img'>
 
     </div>
     <div class = 'd-flex flex-column'>
       <div class ='d-flex flex-row mb-1 blog-head'>
-        <strong class = 'me-3'>Adrian Dzienkiewicz</strong>
-        <span>20 minut temu</span>
+        <strong class = 'me-3'>{{post.author}}</strong>
+        <span>{{processTime(post.created_at)}}</span>
       </div>
       <div class="blog-body">
         <p>
-          Informuje bla bla bla bla
+          {{post.content}}
         </p>
       </div>
     </div>

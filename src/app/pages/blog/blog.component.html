@@ -38,16 +38,11 @@
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
+    <app-post *ngFor="let post of postsDetails"
+      [post]="post"
+    >
 
-
-
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-
+    </app-post>
 
   </div>
 </div>
