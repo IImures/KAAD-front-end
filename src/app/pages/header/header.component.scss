@@ -110,6 +110,7 @@ header.scrolled .navigation-list-div{
 .navigation-list-element {
   display: inline;
   padding-right: 10px;
+  user-select: none;
 }
 
 .navigation-list-element a {
