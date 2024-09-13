@@ -13,7 +13,7 @@
         <ul class="navigation-list list-unstyled d-flex flex-wrap justify-content-center">
           <li *ngFor="let link of links;" class="navigation-list-element d-flex align-items-center me-3">
             <img src="/assets/icons/link.png" alt="link icon" class="me-2">
-            <a href="{{link.url}}" class="text-decoration-none">{{link.label}}</a>
+            <a href="{{link.url}}" class="text-decoration-none" [innerHTML]="link.label"></a>
           </li>
         </ul>
       </nav>

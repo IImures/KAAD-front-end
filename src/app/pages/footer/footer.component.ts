@@ -14,11 +14,7 @@ export class FooterComponent {
   links =[
     {
       url: "#test",
-      label: 'ul. Żurawia 22 lok.308',
-    },
-    {
-      url: "#test",
-      label: '00-515 Warszawa',
+      label: 'ul. Żurawia 22 lok.308, &nbsp; 00-515 Warszawa',
     },
     {
       url: "#test",

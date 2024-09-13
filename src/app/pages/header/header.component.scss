@@ -6,11 +6,6 @@ header {
   z-index: 1000; // Header beneath cards????
 }
 
-@media (max-width: 524px) {
- .KAAD-logo{
-   display: none;
- }
-}
 
 .logo-and-language {
   display: flex;
@@ -103,8 +98,6 @@ ul.languages-list {
   transition: background 0.3s ease, top 0.3s ease;
 }
 
-
-
 header.scrolled .navigation-list-div{
   background: transparent;
   top: -4rem;
@@ -128,7 +121,7 @@ header.scrolled .navigation-list-div{
   font-size: 1.6rem;
   text-decoration: none;
   color: #333;
-  font-weight: 700;
+  font-weight: 550;
   transition: color 0.3s ease;
   font-family:  Noto-Serif, serif;
 }
@@ -139,17 +132,33 @@ header.scrolled .navigation-list-div{
     width: 28rem;
   }
   .navigation-list-element a{
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 400px){
+@media (max-width: 524px) {
+  .KAAD-logo{
+    display: none;
+  }
+  //.navigation-list-div{
+  //  //border-radius: 0;
+  //  //width: 100%;
+  //  //max-width: 100%;
+  //  //margin: 0;
+  //}
+}
+
+@media (max-width: 460px){
   .navigation-list-div{
-    margin-left: 1vw;
-    width: 24rem;
+    //margin-left: 1vw;
+    //width: 24rem;
+    border-radius: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
   }
   .navigation-list-element a{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 

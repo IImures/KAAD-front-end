@@ -3,17 +3,22 @@ section {
   padding-bottom: 4rem;
 }
 
+.article-content{
+  padding-right: 4rem;
+  padding-left: 4rem;
+}
+
 h2 {
   font-size: 2.5em;
   padding: 20px;
   margin: 0;
-  font-family: Open-Sans;
+  font-family: Noto-Serif, Open-Sans, 'serif';
   font-weight: bold;
   letter-spacing: -0.2px;
 }
 
 p {
-  font-family: Open-Sans;
+  font-family: Noto-Serif, Open-Sans, 'serif';
   letter-spacing: 0.5px;
   line-height: 2rem;
   font-size: 1.2rem;

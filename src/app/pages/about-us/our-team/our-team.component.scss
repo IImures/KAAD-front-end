@@ -1,6 +1,9 @@
 h2 {
-  font-size: 3rem;
-  font-family: 'Open-Sans', serif;
+  font-size: 2.5em;
+  padding: 20px;
+  margin: 0;
+  font-family: Noto-Serif, Open-Sans, serif;
+  font-weight: bold;
 }
 
 ul {
@@ -9,8 +12,13 @@ ul {
 
 p {
   margin: 0;
-  font-weight: bolder;
+  font-family: Noto-Serif, Open-Sans, serif;
+  //font-weight: bolder;
   color: gray;
+}
+
+strong{
+  font-family: Noto-Serif, Open-Sans, serif;
 }
 
 .member-info {
@@ -23,7 +31,7 @@ strong {
 }
 
 .member-icon {
-  min-width: 50%;
+  //min-width: 50%;
   width: 25rem;
   object-fit: cover;
   padding: 1rem;
@@ -57,14 +65,14 @@ strong {
 //  border-radius: 8px;
 //}
 
-@media (max-width: 767.98px) {
-  //.even,
-  //.odd {
-  //  flex-direction: column;
-  //  text-align: center;
-  //}
-
-  //.odd .member-info {
-  //  text-align: center;
-  //}
-}
+//@media (max-width: 767.98px) {
+//  //.even,
+//  //.odd {
+//  //  flex-direction: column;
+//  //  text-align: center;
+//  //}
+//
+//  //.odd .member-info {
+//  //  text-align: center;
+//  //}
+//}

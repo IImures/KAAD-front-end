@@ -32,20 +32,5 @@ export class SpecializationsComponent {
       name: 'Zamówinie publiczne',
       icon: '/assets/icons/commercial.png',
     },
-    {
-      id: '1',
-      name: 'Odszkodowania',
-      icon: '/assets/icons/gavel.png',
-    },
-    {
-      id: '2',
-      name: 'Windukacja',
-      icon: '/assets/icons/justice-scale.png',
-    },
-    {
-      id: '3',
-      name: 'Zamówinie publiczne',
-      icon: '/assets/icons/commercial.png',
-    },
   ]
 }

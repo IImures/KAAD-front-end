@@ -1,20 +1,8 @@
 
 <h2 class="text-center my-4">{{title}}</h2>
-<div class ="d-flex justify-content-center mb-5">
+<div class ="d-flex justify-content-center mb-5 overflow-hidden p-1">
   <div class="row d-flex flex-column flex-xl-row align-items-center">
-    <div class="col mt-3 mb-3">
-      <img src="{{teamMembers[0].img}}" alt="Member photo" class="member-icon img-fluid  p-0">
-      <div class="text-start">
-        <strong>{{teamMembers[0].fullName}}</strong>
-        <p>{{teamMembers[0].description}}</p>
-      </div>
-        <div class="member-links mt-2">
-          <a href="tel:{{teamMembers[0].phoneNumber}}"><img class="icon img-fluid" alt="Phone icon" src="/assets/icons/phone-icon.png"></a>
-          <a href="mailto:{{teamMembers[0].email}}"><img class="icon img-fluid" alt="Mail icon" src="/assets/icons/mail-icon.png"></a>
-        </div>
-    </div>
 
-    <div class = "col-1"></div>
 
     <div class="col mt-3 mb-3">
       <img src="{{teamMembers[1].img}}" alt="Member photo" class="member-icon img-fluid p-0">
@@ -27,6 +15,24 @@
         <a href="mailto:{{teamMembers[1].email}}"><img class="icon img-fluid" alt="Mail icon"  src="/assets/icons/mail-icon.png"></a>
       </div>
     </div>
+
+    <div class = "col-1"></div>
+
+    <div class="col mt-3 mb-3">
+      <img src="{{teamMembers[0].img}}" alt="Member photo" class="member-icon img-fluid p-0 ">
+      <div class="text-start">
+        <strong>{{teamMembers[0].fullName}}</strong>
+        <p>{{teamMembers[0].description}}</p>
+      </div>
+        <div class="member-links mt-2">
+          <a href="tel:{{teamMembers[0].phoneNumber}}"><img class="icon img-fluid" alt="Phone icon" src="/assets/icons/phone-icon.png"></a>
+          <a href="mailto:{{teamMembers[0].email}}"><img class="icon img-fluid" alt="Mail icon" src="/assets/icons/mail-icon.png"></a>
+        </div>
+    </div>
+
+
+
+
 
   </div>
 </div>
