@@ -18,21 +18,21 @@ export class BlogComponent {
     {
       postId: '1',
       author: 'Adrian Dzienkiewicz',
-      created_at: '1700000000000',
+      createdAt: '1700000000000',
       content: 'Informue bla bla bla',
       contentLength: 3
     },
     {
       postId: '2',
       author: 'Adrian Dzienkiewicz',
-      created_at: '2024-02-10',
+      createdAt: '2024-02-10',
       content: '1725450606473',
       contentLength: 3
     },
     {
       postId: '3',
       author: 'Adrian Dzienkiewicz',
-      created_at: '1725460004900',
+      createdAt: '1725460004900',
       content: 'Informue bla bla bla',
       contentLength: 3
     },

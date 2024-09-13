@@ -1,8 +1,6 @@
 @import "../styles.scss";
 
 main{
-  //height: 2000px;
+  min-height: 90vh;
   padding-top: $header-height;
-  //padding-right: $header-height;
-  //padding-left: $header-height;
 }

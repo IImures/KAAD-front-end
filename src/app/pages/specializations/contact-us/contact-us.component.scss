@@ -1,16 +1,17 @@
 
 .support-banner {
-  background-color: #2e4b3a; /* Dark green background color */
-  color: #ffffff; /* White text color */
+  background-color: #2e4b3a;
+  color: #ffffff;
   font-family: Open-Sans, Arial, sans-serif;
   font-size: 1.5rem;
+  width: 100vw;
 }
 
 .btn-custom {
-  background-color: #f0f0f0; /* Light grey background */
-  color: #000000; /* Black text color */
+  background-color: #f0f0f0;
+  color: #000000;
   font-weight: bold;
-  border-radius: 50px; /* Rounded button */
+  border-radius: 50px;
   padding: 10px 20px;
   display: flex;
   align-items: center;

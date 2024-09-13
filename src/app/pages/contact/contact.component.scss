@@ -5,7 +5,8 @@
 }
 
 .container{
-  margin-top: 8rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   font-family: Noto-Serif, Arial, sans-serif;
 }
 .head{
@@ -51,6 +52,10 @@
   font-weight: bold;
 }
 
+.contact-info{
+  width: auto;
+}
+
 .map-container{
   width: 25rem;
   height: 25rem;
@@ -61,4 +66,21 @@ iframe {
   height: 100%;
 }
 
+//@media (max-width: 1024px) {
+//  iframe {
+//    width: 22rem;
+//    height: 22rem;
+//  }
+//}
+//
+@media (max-width: 375px) {
+  .map-container{
+    width: 20rem;
+    height: 20rem;
+  }
 
+  iframe {
+    width: 20rem;
+    height: 20rem;
+  }
+}

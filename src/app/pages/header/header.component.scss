@@ -37,9 +37,6 @@ header.scrolled .logo-and-language {
   transition: transform 0.3s ease;
 }
 
-header.scrolled .AD-letters{
-
-}
 
 .KAAD-logo {
   height: auto;
@@ -79,8 +76,6 @@ ul.languages-list {
   box-shadow: 0 0 4px black;
 }
 
-
-
 .navigation-list-div {
   width: 40rem;
   max-width: 50rem;
@@ -99,7 +94,7 @@ ul.languages-list {
 }
 
 header.scrolled .navigation-list-div{
-  background: transparent;
+  background: transparent; // TODO sometimes transition with shown dropdownmenu is bad(
   top: -4rem;
 }
 
@@ -126,6 +121,42 @@ header.scrolled .navigation-list-div{
   font-family:  Noto-Serif, serif;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
+.dropdown-menu{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: absolute;
+  padding: 1rem;
+  margin-top: 0.3rem;
+  border: 0;
+  gap: 0.5rem;
+  background-color: #efefef;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 4px 4px rgba(67, 67, 67, 0.7);
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu-element{
+  border-radius: 2rem;
+  padding: 0.3rem 0.3rem 0.3rem 1rem;
+}
+
+.dropdown-menu-element a{
+  transition: color 0s ease;
+}
+
+header.scrolled .dropdown-menu{
+  background-color: #ffffff;
+}
+
+.dropdown-menu-element a{
+  font-size: 1.2rem;
+}
+
 @media (max-width: 650px){
   .navigation-list-div{
     margin-left: 15px;
@@ -140,18 +171,10 @@ header.scrolled .navigation-list-div{
   .KAAD-logo{
     display: none;
   }
-  //.navigation-list-div{
-  //  //border-radius: 0;
-  //  //width: 100%;
-  //  //max-width: 100%;
-  //  //margin: 0;
-  //}
 }
 
 @media (max-width: 460px){
   .navigation-list-div{
-    //margin-left: 1vw;
-    //width: 24rem;
     border-radius: 0;
     width: 100%;
     max-width: 100%;
@@ -182,3 +205,12 @@ header.scrolled .navigation-list-element.active a{
 .navigation-list-element.active a {
   color: #286653;
 }
+
+.dropdown-menu-element:hover{
+  background: rgb(150, 150, 150);
+  a{
+    color: #fff;
+  }
+}
+
+

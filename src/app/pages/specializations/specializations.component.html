@@ -1,16 +1,20 @@
-<div class="container mt-5 pt-3 cards">
-  <h2 class="text-center mb-4">Główne specjalizacje</h2>
-  <div class="row text-center">
+<div class="d-flex h-100 flex-column justify-content-center">
 
-    <div *ngFor="let card of specializations;"
-      class="col-md-4 mb-4">
-      <app-card [data]="card" ></app-card>
+  <div class="mb-5">
+    <div class="container mt-5 pt-3 cards">
+      <h2 class="text-center mb-4">Główne specjalizacje</h2>
+      <div class="row text-center">
+
+        <div *ngFor="let card of specializations;"
+          class="col-md-4 mb-4">
+          <app-card [data]="card" ></app-card>
+        </div>
+
+
+      </div>
     </div>
 
-
+    <app-contact-us></app-contact-us>
   </div>
+
 </div>
-
-<app-contact-us></app-contact-us>
-
-
