@@ -5,7 +5,7 @@
         <h5>Potrzebujesz innego wsparcia?</h5>
         <span>Sprawdź, czy możemy Ci pomóc. Zadzwoń lub napisz do nas.</span>
       </div>
-      <a [routerLink]="['/contact']" routerLinkActive="true" class="btn btn-custom d-inline-flex align-items-center position-relative p-1">
+      <a [routerLink]="['/contact']" (click)="navListService.setActive(3)" routerLinkActive="true" class="btn btn-custom d-inline-flex align-items-center position-relative p-1">
         <span class="p-2">Kontakt</span>
         <div class="d-flex justify-content-center align-items-center arrow rounded-circle p-2 ms-2">
           <img src="/assets/icons/right-arrow.png" class="img-fluid arrow-icon" alt="Arrow">

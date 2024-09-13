@@ -26,7 +26,7 @@
 
           <li *ngFor="let link of links; let i = index"
               class="navigation-list-element"
-              [class.active]="i === activeLinkIndex"
+              [class.active]="navListService.isActive(i)"
               (click)="link.action(i)">
             <a [routerLink]="link.url" [class.disabled] = "!link.active">{{ link.label }}</a>
 

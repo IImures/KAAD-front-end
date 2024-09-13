@@ -1,6 +1,7 @@
 import {Component, HostListener,} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
+import {NavigationalListService} from "../../services/navigational-list.service";
 
 @Component({
   selector: 'app-header',
@@ -67,10 +68,9 @@ export class HeaderComponent {
   isListShown: boolean = false;
   activeDropdownIndex: number | null = null;
 
-  // @ViewChildren('dropdown') dropdownMenus!: QueryList<ElementRef>;
-
   constructor(
     private router: Router,
+    public navListService: NavigationalListService
   ) {
   }
 
@@ -93,20 +93,16 @@ export class HeaderComponent {
       this.isListShown = false;
       this.activeDropdownIndex = null;
     }
-    console.log(this.isListShown);
   }
 
   private isClickInsideDropdown(event: Event): boolean {
-    console.log('Dropdowns:', document.querySelectorAll('.dropdown-menu')); // Check if this logs correctly
     const dropdowns = document.querySelectorAll('.dropdown-menu');
     if (dropdowns.length == 0) {
-      console.log('Dropdown not found');
       return false;
     }
     let ifPressedOutside = true;
     dropdowns.forEach(
       dropdown => {
-        console.log('Checking dropdown:', dropdown); // Check each dropdown element
         if (dropdown.contains(event.target as Node)) {
           ifPressedOutside = false;
         }
@@ -117,23 +113,24 @@ export class HeaderComponent {
 
   public makeActive(index: number) {
     this.isListShown = false;
-    this.activeLinkIndex = index;
+    this.navListService.setActive(index);
+    // this.activeLinkIndex = index;
     this.activeDropdownIndex = null;
   }
 
   public showSpecializationList(index: number) {
 
-    this.activeLinkIndex = index;
+    // this.activeLinkIndex = index;
 
     if (this.isListShown && this.activeDropdownIndex === index) {
       this.isListShown = false;
       this.activeDropdownIndex = null;
+      this.navListService.setActive(index);
       this.router.navigate(['specializations']);
     } else {
       this.isListShown = true;
       this.activeDropdownIndex = index;
     }
-    console.log(this.isListShown);
 
   }
 }
