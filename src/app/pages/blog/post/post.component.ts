@@ -23,12 +23,9 @@ const months = [
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent implements OnInit{
+export class PostComponent {
 
 
-  ngOnInit(): void {
-    console.log(new Date().getTime());
-  }
   @Input() post!: PostDetails;
 
   processTime(created_at: string) {
@@ -84,12 +81,6 @@ export class PostComponent implements OnInit{
     const totalSeconds = Math.floor(milliDiff / 1000);
     const totalMinutes = Math.floor(totalSeconds / 60);
     const totalHours = Math.floor(totalMinutes / 60);
-
-    console.log(milliDiff);
-    console.log(totalSeconds);
-    console.log(totalMinutes);
-    console.log(totalHours);
-
 
     return {
       milliDiff,
