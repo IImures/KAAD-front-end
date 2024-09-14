@@ -31,7 +31,6 @@ strong {
 }
 
 .member-icon {
-  //min-width: 50%;
   width: 25rem;
   object-fit: cover;
   padding: 1rem;
@@ -39,6 +38,24 @@ strong {
 
 .member-links {
   color: gray;
+}
+
+.member-links ul{
+  color: black;
+  font-size: 1rem;
+  font-family: Noto-Serif, Open-Sans, serif;
+}
+
+@media (min-width: 426px) {
+  .member-links a{
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .member-links ul{
+    display: none;
+  }
 }
 
 .icon {
