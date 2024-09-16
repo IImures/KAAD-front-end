@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PostDetails} from "../../../interfaces/post-details";
+import {NgIf} from "@angular/common";
 
 const months = [
   'stycznia',
@@ -19,14 +20,19 @@ const months = [
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent {
+export class PostComponent implements OnInit{
 
 
   @Input() post!: PostDetails;
+
+  wordCollapseLimit : number = 100;
+  isPostHidden!: boolean;
 
   processTime(created_at: string) {
     let date = new Date(parseInt(created_at));
@@ -90,4 +96,15 @@ export class PostComponent {
     };
   }
 
+  ifHidePost() {
+    return this.post.contentLength > this.wordCollapseLimit;
+  }
+
+  togglePost() {
+    this.isPostHidden = !this.isPostHidden;
+  }
+
+  ngOnInit(): void {
+    this.isPostHidden = this.ifHidePost();
+  }
 }

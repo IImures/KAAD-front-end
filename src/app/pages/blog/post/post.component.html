@@ -10,11 +10,18 @@
         <strong class = 'me-3'>{{post.author}}</strong>
         <span>{{processTime(post.createdAt)}}</span>
       </div>
-      <div class="blog-body">
-        <p>
-          {{post.content}}
-        </p>
+
+      <div [class.expanded]="!isPostHidden" [class.collapsed]="isPostHidden" class="blog-body">
+        <p [class.hidden-text]="isPostHidden">{{ post.content }}</p>
+<!--        <p *ngIf="isPostHidden" class="hidden-text">{{ getStartOfPost() }}...</p>-->
       </div>
+
+      <div *ngIf="ifHidePost()" class="d-flex justify-content-center">
+        <button class="show-btn" (click)="togglePost()">
+          {{ isPostHidden ? 'czytaj dalej' : 'zwiń' }}
+        </button>
+      </div>
+
     </div>
   </div>
 </div>

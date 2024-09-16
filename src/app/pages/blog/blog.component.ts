@@ -26,15 +26,22 @@ export class BlogComponent {
       postId: '2',
       author: 'Adrian Dzienkiewicz',
       createdAt: '2024-02-10',
-      content: '1725450606473',
+      content: '1725450606 ew  asdf asd asdf wasdF ASDF ASDF ASD FASDF ASD SZDAF ASD FASDF ASD DAS XASf ASD D fdas FDas asdf asdf asd asdf asdf das fasdf asdfv asddf weadfg asdfg werasg easrg easg rteawawre wera rgaew gr qwEDF ASD W aqweA FWEa wea weaF WASDVF ASDFDFRG AWER 473',
       contentLength: 3
     },
     {
       postId: '3',
       author: 'Adrian Dzienkiewicz',
       createdAt: '1725460004900',
-      content: 'Informue bla bla bla',
-      contentLength: 3
+      content: 'Informue bla bla bla 1 2 34 2352 aszfgdasd as fsadqw CASDFWA EFASDVASDF  Wasefrasc asdrf  aWERF WAEAWER AWSDFAWD  AWEFASD  As dfdwA C ASDF AZSDFGA Wzsad AWEF AWSE ZVSDFWD  a waef  fdasXCaw fAS D fA asdF qwe casdD FWA cAWE C a fqeQE acd  AWEEFAw awe fawsddf qwSDDF wer   AFD waed fwadf asdf asdf awdsf asdc asd  aSDF ASdfasdfasdfasd ass dfasd fwads fdsaf asdf awsdf asd fasdf asdf asddf a fasd SDf asdf asdf asdf asdf wadsf asdf asdf asd asddfasdfdasfasd asdf asdwf asdf das fasdfvc dasf asdf asdf asdf asdfasdfawsfasdfdasdfASSFASDFASD ASD ASDF AWSDDFASDF SASDFASD ASDF ASDF ASDFASD FAS  ASDSDAFASDFDSAADFSDFSAFSD SDAFASDFDSASFDASASDFDASFDS ASDFASDFSDA ASDF ASDFASDFASD F SDA SD FSDA ASD ASDF ASD FASD FDAS FASD FASDM, FKLASDF KLWEADSFKOLNASDKON ASEDFJLFGN ASDJKLN FASDJKLM ASDKLMJFV O[JKLADSN FO[ASD FJO[KLDSA O[FJKLD ASOJN FDASO[JKN FVAJKSON SDAFO[JKN FD DASF FADS FJMLDAS KLOFDASNMKLN ADFSVOJKLADFGS O ',
+      contentLength: 150
+    },
+    {
+      postId: '4',
+      author: 'Adrian Dzienkiewicz',
+      createdAt: '1725460004900',
+      content: 'Informue bla bla bla 1 2 34 2352 aszfgdasd as fsadqw CASDFWA EFASDVASDF  Wasefrasc asdrf  aWERF WAEAWER AWSDFAWD  AWEFASD  As dfdwA C ASDF AZSDFGA Wzsad AWEF AWSE ZVSDFWD  a waef  fdasXCaw fAS D fA asdF qwe casdD FWA cAWE C a fqeQE acd  AWEEFAw awe fawsddf qwSDDF wer   AFD waed fwadf asdf asdf awdsf asdc asd  aSDF ASdfasdfasdfasd ass dfasd fwads fdsaf asdf awsdf asd fasdf asdf asddf a fasd SDf asdf asdf asdf asdf wadsf asdf asdf asd asddfasdfdasfasd asdf asdwf asdf das fasdfvc dasf asdf asdf asdf asdfasdfawsfasdfdasdfASSFASDFASD ASD ASDF AWSDDFASDF SASDFASD ASDF ASDF ASDFASD FAS  ASDSDAFASDFDSAADFSDFSAFSD SDAFASDFDSASFDASASDFDASFDS ASDFASDFSDA ASDF ASDFASDFASD F SDA SD FSDA ASD ASDF ASD FASD FDAS FASD FASDM, FKLASDF KLWEADSFKOLNASDKON ASEDFJLFGN ASDJKLN FASDJKLM ASDKLMJFV O[JKLADSN FO[ASD FJO[KLDSA O[FJKLD ASOJN FDASO[JKN FVAJKSON SDAFO[JKN FD DASF FADS FJMLDAS KLOFDASNMKLN ADFSVOJKLADFGS O ',
+      contentLength: 150
     },
     // {
     //   postId: '4',

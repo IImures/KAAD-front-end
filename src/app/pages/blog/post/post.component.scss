@@ -9,17 +9,58 @@
 
 .blog-item{
   background-color: #efefef;
+  height: 100%;
+  //background-color: black;
 }
 
 .blog-head{
   font-family: Open-Sans, Arial, sans-serif;
   font-weight: 500;
 }
-//.blog-head strong{
-//  font-weight: bold;
-//}
 
-.blog-body{
-  font-family: Noto-Serif, Arial, sans-serif, Arial, sans-serif;
+.blog-body {
+  max-height: 100%;
+  overflow: hidden;
+  font-family: Noto-Serif, Arial, sans-serif;
   font-weight: 550;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  transition: -webkit-line-clamp 0.5s ease;
 }
+
+.blog-body.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.blog-body.collapsed {
+  -webkit-line-clamp: 2;
+}
+
+.hidden-text {
+  background-image: linear-gradient(black, #efefef);
+  background-clip: text;
+  text-fill-color: transparent;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.show-btn {
+  margin-top: 1rem;
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 0.5rem;
+  width: 10rem;
+  border-radius: 50px;
+  font-size: 16px;
+  font-family: Noto-Serif, Arial, sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.show-btn:hover {
+  background-color: #d5d5d5;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
