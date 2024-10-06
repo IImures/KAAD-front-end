@@ -4,6 +4,7 @@ import {HeaderComponent} from "./pages/header/header.component";
 import {FooterComponent} from "./pages/footer/footer.component";
 import {isPlatformBrowser} from "@angular/common";
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
