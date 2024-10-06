@@ -6,7 +6,6 @@ header {
   z-index: 1000; // Header beneath cards????
 }
 
-
 .logo-and-language {
   display: flex;
   flex-direction: row;
@@ -49,31 +48,11 @@ header.scrolled .KAAD-logo{
   opacity: 0;
 }
 
-ul.languages-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
-}
 
 .languages {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.language-list-element {
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.language-flag {
-  max-width: 2rem;
-  height: auto;
-  box-shadow: 0 0 4px black;
 }
 
 .navigation-list-div {

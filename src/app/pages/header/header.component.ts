@@ -2,6 +2,7 @@ import {Component, HostListener,} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {NavigationalListService} from "../../services/navigational-list.service";
+import {LanguageListComponent} from "./laguage-list/language-list.component";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ import {NavigationalListService} from "../../services/navigational-list.service"
     NgForOf,
     RouterLink,
     RouterLinkActive,
-    NgIf
+    NgIf,
+    LanguageListComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
