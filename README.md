@@ -10,6 +10,7 @@ This is a project created for a Law Firm, made in order to help the firm adverti
   - [Backend](#backend)
 - [Installation](#installation)
 - [Configuration](#configuration)
+- [Images](#images)
 
 ## Features
 
