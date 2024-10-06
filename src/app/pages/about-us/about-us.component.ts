@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MainTextSectionComponent} from "./main-text-section/main-text-section.component";
 import {OurTeamComponent} from "./our-team/our-team.component";
 import {TeamMember} from "../../interfaces/team-member";
+import {GeneralInfoDetails} from "../../interfaces/GeneralInfoDetails";
+import {GeneralInfoService} from "../../services/general-info.service";
+import {LanguageService} from "../../services/language.service";
 
 @Component({
   selector: 'app-about-us',
@@ -13,12 +16,12 @@ import {TeamMember} from "../../interfaces/team-member";
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.scss'
 })
-export class AboutUsComponent {
+export class AboutUsComponent implements OnInit {
 
-  firstArticle = {
-    header: "About Us",
-    text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisl leo, rhoncus nec sem vel, malesuada vestibulum enim. Mauris hendrerit eros nec sapien vestibulum pellentesque. Proin finibus efficitur lacinia. Proin fringilla, magna dapibus maximus porta, metus purus commodo ipsum, sit amet venenatis massa ante nec sapien. In semper velit id libero ornare tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus pellentesque, metus quis vehicula pharetra, nunc turpis laoreet velit, nec commodo enim felis ac nibh. Nunc ut nulla viverra sapien tincidunt elementum eget ac arcu. In semper sed justo a tincidunt. Nullam orci velit, rhoncus a lacinia et, consectetur non eros. Sed commodo ex leo. Aliquam erat volutpat.",
-  }
+  aboutUs: GeneralInfoDetails = {
+    id:'0',
+    content:''
+  };
 
   ourTeamTitle = 'Nasz Zespół'
   teamMembers: TeamMember[] =[
@@ -38,5 +41,32 @@ export class AboutUsComponent {
     }
   ]
 
+  constructor(
+    private generalInfoService: GeneralInfoService,
+    private languageService: LanguageService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.updateInfo();
+    this.generalInfoService.getInfo("aboutUs")
+      .subscribe(info => {
+        this.aboutUs = info;
+      })
+  }
+
+
+  private updateInfo() {
+    this.languageService.language$.subscribe(
+      {
+        next: lang => {
+          this.generalInfoService.getInfo("aboutUs")
+            .subscribe(info => {
+              this.aboutUs = info;
+            })
+        }
+      }
+    )
+  }
 }
 

@@ -31,8 +31,8 @@ export class LanguageListComponent implements OnInit {
     this.langLoaded = true;
   }
 
-  changeLanguage(id: string) {
-    console.log(`Language: ${id}`);
+  changeLanguage(lang: LanguageDetails) {
+    this.languageService.changeLanguage(lang);
   }
 
   protected readonly environment = environment;

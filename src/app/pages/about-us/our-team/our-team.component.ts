@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {NgClass, NgForOf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {TeamMember} from "../../../interfaces/team-member";
 
 @Component({
@@ -8,7 +8,8 @@ import {TeamMember} from "../../../interfaces/team-member";
   imports: [
     NgForOf,
     NgClass,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgIf
   ],
   templateUrl: './our-team.component.html',
   styleUrl: './our-team.component.scss'

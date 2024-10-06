@@ -19,25 +19,10 @@ export class LanguageService{
     private http: HttpClient,
     private localStorage: LocalStorageService,
   ) {
-    const savedLang = this.localStorage.getItem('lang');
-    if(savedLang){
-      this.languageSubject = new BehaviorSubject(savedLang);
-      this.language$ = this.languageSubject.asObservable();
-    }else{
-      this.getLanguages().subscribe(
-        {next: languages =>{
-            let defaultLangCode: string | undefined;
-            defaultLangCode = languages.find(language => language.defaultLanguage)?.code;
-
-            if (defaultLangCode) {
-              this.languageSubject = new BehaviorSubject(defaultLangCode);
-              this.language$ = this.languageSubject.asObservable();
-              this.localStorage.setItem('lang', defaultLangCode);
-            }
-          }
-        }
-      );
-    }
+    const savedLang = this.localStorage.getItem('lang') || 'pl';
+    this.languageSubject = new BehaviorSubject(savedLang);
+    this.language$ = this.languageSubject.asObservable();
+    this.localStorage.setItem('lang', savedLang);
   }
 
   getLanguages(){
@@ -45,4 +30,8 @@ export class LanguageService{
   }
 
 
+  changeLanguage(lang: LanguageDetails) {
+    this.languageSubject.next(lang.code);
+    this.localStorage.setItem('lang', lang.code);
+  }
 }

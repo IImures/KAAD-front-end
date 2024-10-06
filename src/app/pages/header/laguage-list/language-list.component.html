@@ -7,7 +7,7 @@
 
   <ul class="languages-list" *ngIf="langLoaded">
     <li *ngFor="let language of languages"  class="language-list-element">
-      <a (click)="changeLanguage(language.id)">
+      <a (click)="changeLanguage(language)">
         <img class="language-flag"
              [src]="environment.apiUrl+'/'+environment.apiVersion+'/language/'+language.id+'/icon'"
              [alt]="language.language + ' language icon'"
