@@ -44,3 +44,10 @@ Role-Based Authentication: Access based on user roles (Admin, Lawyer, Writer).
       ```
 ## Configuration
 You can configure different environment variables that will change depending on project state(production or not) in `src/environments` folder
+## Images
+![image](https://github.com/user-attachments/assets/bc65f41b-e9fd-4f91-8918-a9c3de0baf35)
+![image](https://github.com/user-attachments/assets/8c69f217-35ab-4e3b-9dc8-8e3493dbfe8e)
+![image](https://github.com/user-attachments/assets/06bf45cd-8df0-4b6b-ba23-294aa054d024)
+
+
+
