@@ -1,6 +1,6 @@
 # KancelariaAdwokacka
 
-This is a project created for a Law Firm, made in order to help the firm advertise their services, publish posts, and easily manage client requests.
+This is a frontend part of a project created for a Law Firm, made in order to help the firm advertise their services, publish posts, and easily manage client requests.
 
 ## Table of Contents
 
