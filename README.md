@@ -14,10 +14,10 @@ This is a frontend part of a project created for a Law Firm, made in order to he
 
 ## Features
 
-Blog Posting: Client can write and publish posts to share legal insights and updates.
-Client Management: A system for handling and organizing client and requests.
-Advertising: Display the firm’s services to attract potential clients.
-Role-Based Authentication: Access based on user roles (Admin, Lawyer, Writer).
+- Blog Posting: Client can write and publish posts to share legal insights and updates.
+- Client Management: A system for handling and organizing client and requests.
+- Advertising: Display the firm’s services to attract potential clients.
+- Role-Based Authentication: Access based on user roles (Admin, Lawyer, Writer).
 
 ## Technology Stack
 ### Frontend
