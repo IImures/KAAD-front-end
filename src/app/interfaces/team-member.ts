@@ -1,7 +1,10 @@
+import {GeneralInfoDetails} from "./GeneralInfoDetails";
+
 export interface TeamMember{
-  fullName: string;
-  description: string;
-  phoneNumber?: string;
-  email: string;
-  img: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  phone?: string;
+  email?: string;
+  description: GeneralInfoDetails;
 }

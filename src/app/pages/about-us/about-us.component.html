@@ -1,8 +1,10 @@
 <div class = " d-flex h-100 flex-column justify-content-center p-md-5 p-sm-1">
 <app-main-text-section
+  *ngIf="aboutUs"
   [content]="aboutUs"
 ></app-main-text-section>
   <app-our-team
+    *ngIf="teamMembers"
   [title]="ourTeamTitle"
   [teamMembers] = "teamMembers"
   >

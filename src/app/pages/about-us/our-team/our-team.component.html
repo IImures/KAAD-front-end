@@ -5,23 +5,23 @@
 
 
     <div class="col mt-3 mb-3">
-      <img src="{{teamMembers[1].img}}" alt="Member photo" class="member-icon img-fluid p-0">
+      <img src="{{environment.apiUrl+'/'+environment.apiVersion+'/team-member/'+teamMembers[0].id+'/photo'}}" alt ="Member photo" class="member-icon img-fluid p-0">
       <div class="text-start">
-        <strong>{{teamMembers[1].fullName}}</strong>
-        <p>{{teamMembers[1].description}}</p>
+        <strong>{{teamMembers[0].firstName + ' ' + teamMembers[0].lastName}}</strong>
+        <p>{{teamMembers[0].description.content}}</p>
       </div>
       <div class="member-links mt-2">
-        <a href="tel:{{teamMembers[1].phoneNumber}}"><img class="icon img-fluid" alt="Phone icon" src="/assets/icons/phone-icon.png"></a>
-        <a href="mailto:{{teamMembers[1].email}}"><img class="icon img-fluid" alt="Mail icon"  src="/assets/icons/mail-icon.png"></a>
+        <a href="tel:{{teamMembers[0].phone}}"><img class="icon img-fluid" alt="Phone icon" src="/assets/icons/phone-icon.png"></a>
+        <a href="mailto:{{teamMembers[0].email}}"><img class="icon img-fluid" alt="Mail icon"  src="/assets/icons/mail-icon.png"></a>
       </div>
 
       <div class="member-links mt-2">
         <ul>
           <li>
-            {{teamMembers[1].phoneNumber}}
+            {{teamMembers[0].phone}}
           </li>
           <li>
-            {{teamMembers[1].email}}
+            {{teamMembers[0].email}}
           </li>
         </ul>
       </div>
@@ -31,24 +31,24 @@
     <div class = "col-1"></div>
 
     <div class="col mt-3 mb-3">
-      <img src="{{teamMembers[0].img}}" alt="Member photo" class="member-icon img-fluid p-0 ">
+      <img src="{{environment.apiUrl+'/'+environment.apiVersion+'/team-member/'+teamMembers[1].id+'/photo'}}" alt="Member photo" class="member-icon img-fluid p-0 ">
       <div class="text-start">
-        <strong>{{teamMembers[0].fullName}}</strong>
-        <p>{{teamMembers[0].description}}</p>
+        <strong>{{teamMembers[1].firstName + ' ' + teamMembers[1].lastName}}</strong>
+        <p>{{teamMembers[1].description.content}}</p>
       </div>
 
         <div class="member-links mt-2">
-          <a href="tel:{{teamMembers[0].phoneNumber}}"><img class="icon img-fluid" alt="Phone icon" src="/assets/icons/phone-icon.png"></a>
-          <a href="mailto:{{teamMembers[0].email}}"><img class="icon img-fluid" alt="Mail icon" src="/assets/icons/mail-icon.png"></a>
+          <a href="tel:{{teamMembers[1].phone}}"><img class="icon img-fluid" alt="Phone icon" src="/assets/icons/phone-icon.png"></a>
+          <a href="mailto:{{teamMembers[1].email}}"><img class="icon img-fluid" alt="Mail icon" src="/assets/icons/mail-icon.png"></a>
         </div>
 
         <div class="member-links list mt-2">
           <ul>
             <li>
-              {{teamMembers[0].phoneNumber}}
+              {{teamMembers[1].phone}}
             </li>
             <li>
-              {{teamMembers[0].email}}
+              {{teamMembers[1].email}}
             </li>
           </ul>
         </div>
