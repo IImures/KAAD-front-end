@@ -1,7 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {SpecializationCard} from "../../../interfaces/specialization-card";
 import {NgOptimizedImage} from "@angular/common";
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import {SpecializationDetails} from "../../../interfaces/specialization-details";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-card',
@@ -16,6 +17,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 })
 export class CardComponent {
 
-  @Input() data!: SpecializationCard;
+  @Input() data!: SpecializationDetails;
 
+  protected readonly environment = environment;
 }

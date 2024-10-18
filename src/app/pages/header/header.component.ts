@@ -1,8 +1,13 @@
-import {Component, HostListener,} from '@angular/core';
+import {Component, HostListener, OnInit,} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {NavigationalListService} from "../../services/navigational-list.service";
 import {LanguageListComponent} from "./laguage-list/language-list.component";
+import {GeneralInfoService} from "../../services/general-info.service";
+import {LanguageService} from "../../services/language.service";
+import {SpecializationService} from "../../services/specialization.service";
+import {HeaderLinks} from "../../interfaces/HeaderLinks";
+import {debounceTime, forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -18,45 +23,49 @@ import {LanguageListComponent} from "./laguage-list/language-list.component";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
-  links = [
+  links : HeaderLinks[] = [
     {
-      label: 'O nas',
+      label: '',
+      code: "aboutLabel",
       url: 'about',
       action: (i:number) => this.makeActive(i),
       active: true,
       dropdown: []
     },
     {
-      label: 'Specjalizacje',
+      label: '',
+      code: "specLabel",
       url: 'specializations',
       action: (i:number) => this.showSpecializationList(i),
       active: false,
       dropdown: [
-        {
-          id: '1',
-          name: 'Odszkodowania',
-        },
-        {
-          id: '2',
-          name: 'Windukacja',
-        },
-        {
-          id: '3',
-          name: 'Zamówinie publiczne',
-        }
+        // {
+        //   id: '1',
+        //   name: 'Odszkodowania',
+        // },
+        // {
+        //   id: '2',
+        //   name: 'Windukacja',
+        // },
+        // {
+        //   id: '3',
+        //   name: 'Zamówinie publiczne',
+        // }
       ]
     },
     {
-      label: 'Aktualności',
+      label: '',
+      code: "blogLabel",
       url: 'blog',
       action: (i:number) => this.makeActive(i),
       active: true,
       dropdown: []
     },
     {
-      label: 'Kontakt',
+      label: '',
+      code: "contactLabel",
       url: 'contact',
       action: (i:number) => this.makeActive(i),
       active: true,
@@ -69,11 +78,72 @@ export class HeaderComponent {
   isScrolled:boolean = false;
   isListShown: boolean = false;
   activeDropdownIndex: number | null = null;
+  loaded = false;
 
   constructor(
     private router: Router,
-    public navListService: NavigationalListService
+    public navListService: NavigationalListService,
+    private generalInfoService: GeneralInfoService,
+    private languageService: LanguageService,
+    private specializationService: SpecializationService,
   ) {
+  }
+
+  ngOnInit() {
+    this.updateInfo();
+    //this.getInfo();
+  }
+
+  private updateInfo(){
+    this.languageService.language$.pipe(
+      debounceTime(300)
+    ).subscribe(
+      ()=> {
+        this.getInfo();
+      }
+    )
+  }
+
+  getInfo() {
+    const requests = [
+      this.generalInfoService.getInfo('aboutLabel'),
+      this.generalInfoService.getInfo('specLabel'),
+      this.generalInfoService.getInfo('blogLabel'),
+      this.generalInfoService.getInfo('contactLabel')
+    ];
+
+    forkJoin(requests).subscribe((responses) => {
+      const [aboutInfo, specInfo, blogInfo, contactInfo] = responses;
+
+      this.updateLinkInfo(aboutInfo);
+      this.updateLinkInfo(specInfo);
+
+      const specLinkInfo = this.links.find(link => link.code === specInfo.code);
+      if (specLinkInfo) {
+        specLinkInfo.label = specInfo.content;
+        this.loadSpecializations(specLinkInfo);
+      }
+
+      this.updateLinkInfo(blogInfo);
+      this.updateLinkInfo(contactInfo);
+      this.loaded = true;
+    });
+  }
+
+  private updateLinkInfo(info: any) {
+    const linkInfo = this.links.find(link => link.code === info.code);
+    if (linkInfo) {
+      linkInfo.label = info.content;
+    }
+  }
+
+  private loadSpecializations(linkInfo: any) {
+    this.specializationService.getSpecialization().subscribe(infos => {
+      linkInfo.dropdown = infos.map(info => ({
+        id: info.id,
+        name: info.generalInfo.content
+      }));
+    });
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -116,13 +186,10 @@ export class HeaderComponent {
   public makeActive(index: number) {
     this.isListShown = false;
     this.navListService.setActive(index);
-    // this.activeLinkIndex = index;
     this.activeDropdownIndex = null;
   }
 
   public showSpecializationList(index: number) {
-
-    // this.activeLinkIndex = index;
 
     if (this.isListShown && this.activeDropdownIndex === index) {
       this.isListShown = false;

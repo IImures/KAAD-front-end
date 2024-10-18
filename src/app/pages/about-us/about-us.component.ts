@@ -7,6 +7,7 @@ import {GeneralInfoService} from "../../services/general-info.service";
 import {LanguageService} from "../../services/language.service";
 import {TeamMemberService} from "../../services/team-member.service";
 import {NgIf} from "@angular/common";
+import {debounceTime, forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-about-us',
@@ -22,36 +23,8 @@ import {NgIf} from "@angular/common";
 export class AboutUsComponent implements OnInit {
 
   aboutUs!: GeneralInfoDetails;
-  //   = {
-  //   id:'0',
-  //   content:'',
-  //   code: '',
-  //   language: {
-  //     id: '',
-  //     language:'',
-  //     code:'',
-  //     defaultLanguage: false
-  //   },
-  // };
-
   ourTeamTitle = 'Nasz Zespół'
   teamMembers!: TeamMember[];
-  //   =[
-  //   // {
-  //   //   fullName : 'Anastazja Hroda',
-  //   //   description : 'prawnik, cudowny żeglarz',
-  //   //   phone : '881641440',
-  //   //   email: 'ahorda@gmail.com',
-  //   //   img: '/assets/members/anastazja.jpg'
-  //   // },
-  //   // {
-  //   //   fullName : 'Adrian Dzienkiewicz',
-  //   //   description : 'adwokat, morski wilk',
-  //   //   phone : '881641440',
-  //   //   email: 'adzienkiewicz@gmail.com',
-  //   //   img: '/assets/members/adrian.jpg'
-  //   // }
-  // ]
 
   constructor(
     private generalInfoService: GeneralInfoService,
@@ -63,50 +36,43 @@ export class AboutUsComponent implements OnInit {
   ngOnInit(): void {
     this.updateInfo();
 
-    this.generalInfoService.getInfo("aboutUs")
-      .subscribe(info => {
-        this.aboutUs = info;
-      });
+    this.getInfo();
 
-    this.generalInfoService.getInfo("team")
-      .subscribe(info=>{
-        this.ourTeamTitle = info.content;
-      })
+  }
+
+  private getInfo() {
 
     this.teamMemberService.getTeamMembers()
-      .subscribe(info =>{
+      .subscribe(info => {
         this.teamMembers = info;
       });
 
+      const requests = [
+        this.generalInfoService.getInfo("aboutUs"),
+        this.generalInfoService.getInfo("team"),
+      ];
 
+      forkJoin(requests).subscribe({
+        next: (response: GeneralInfoDetails[]) => {
+          const [aboutInfo, teamInfo] = response;
+          this.aboutUs = aboutInfo;
+          this.ourTeamTitle = teamInfo.content;
+        },
+        error: (error) => {
+          console.error('Error fetching information:', error);
+        }
+      })
   }
 
-
-  private updateInfo() {
-
-    this.languageService.language$.subscribe(
-      {
-        next: async () => {
-
-          this.generalInfoService.getInfo("aboutUs")
-            .subscribe(info => {
-              this.aboutUs = info;
-            });
-
-          this.generalInfoService.getInfo("team")
-            .subscribe(info=>{
-              this.ourTeamTitle = info.content;
-            })
-
-          this.teamMemberService.getTeamMembers()
-            .subscribe(info =>{
-              this.teamMembers = info;
-            });
-
-        }
+  private updateInfo(){
+    this.languageService.language$.pipe(
+      debounceTime(300)
+    ).subscribe(
+      ()=> {
+        this.getInfo();
       }
     );
-
   }
+
 }
 

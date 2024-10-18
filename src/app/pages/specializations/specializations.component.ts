@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
-import {SpecializationCard} from "../../interfaces/specialization-card";
+import {Component, OnInit} from '@angular/core';
 import {CardComponent} from "./card/card.component";
 import {NgForOf} from "@angular/common";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
+import {SpecializationDetails} from "../../interfaces/specialization-details";
+import {SpecializationService} from "../../services/specialization.service";
+import {LanguageService} from "../../services/language.service";
+import {GeneralInfoService} from "../../services/general-info.service";
+import {debounceTime, forkJoin} from "rxjs";
+import {GeneralInfoDetails} from "../../interfaces/GeneralInfoDetails";
 
 @Component({
   selector: 'app-specializations',
@@ -15,22 +20,62 @@ import {ContactUsComponent} from "./contact-us/contact-us.component";
   templateUrl: './specializations.component.html',
   styleUrl: './specializations.component.scss'
 })
-export class SpecializationsComponent {
-  public specializations: SpecializationCard[] = [
-    {
-      id: '1',
-      name: 'Odszkodowania',
-      icon: '/assets/icons/gavel.png',
-    },
-    {
-      id: '2',
-      name: 'Windukacja',
-      icon: '/assets/icons/justice-scale.png',
-    },
-    {
-      id: '3',
-      name: 'Zamówinie publiczne',
-      icon: '/assets/icons/commercial.png',
-    },
-  ]
+export class SpecializationsComponent implements OnInit {
+
+  public title: string = "Główne specjalizacje";
+  public specializations: SpecializationDetails[] = []
+
+  public contactUs! : string;
+
+  constructor(
+    private generalInfoService: GeneralInfoService,
+    private specializationService: SpecializationService,
+    private languageService: LanguageService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.updateInfo();
+    this.getInfo();
+  }
+
+  private updateInfo(){
+    this.languageService.language$.pipe(
+      debounceTime(300)
+    ).subscribe(
+      ()=> {
+        this.getInfo();
+      }
+    );
+  }
+
+  private getInfo() {
+    this.generalInfoService.getInfo('specTitle')
+      .subscribe({
+        next: data => {
+          this.title = data.content;
+        }
+      });
+
+    const requests = [
+      this.generalInfoService.getInfo("specTitle"),
+      this.generalInfoService.getInfo("contactBanner"),
+    ];
+
+    forkJoin(requests).subscribe({
+      next: (response: GeneralInfoDetails[]) => {
+        const [specTitleInfo, contactTitleInfo] = response;
+
+        this.title = specTitleInfo.content;
+        this.contactUs = contactTitleInfo.content;
+      }
+    })
+
+    this.specializationService.getSpecialization()
+      .subscribe({
+        next: data => {
+          this.specializations = data;
+        }
+      });
+  }
 }
