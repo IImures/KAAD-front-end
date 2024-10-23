@@ -2,5 +2,7 @@
 
 main{
   min-height: 90vh;
+  flex-wrap: wrap;
+  align-content: center;
   padding-top: $header-height;
 }

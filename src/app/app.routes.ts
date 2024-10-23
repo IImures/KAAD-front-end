@@ -3,6 +3,7 @@ import {AboutUsComponent} from "./pages/about-us/about-us.component";
 import {SpecializationsComponent} from "./pages/specializations/specializations.component";
 import {ContactComponent} from "./pages/contact/contact.component";
 import {BlogComponent} from "./pages/blog/blog.component";
+import {SpecializationPageComponent} from "./pages/specialization-page/specialization-page.component";
 
 export const routes: Routes = [
 
@@ -19,7 +20,12 @@ export const routes: Routes = [
   {
     path: 'specializations',
     component: SpecializationsComponent,
-    title: 'Specjalizacje'
+    title: 'Specjalizacje',
+  },
+  {
+    path: 'specialization/:id',
+    component: SpecializationPageComponent,
+    title: 'Page',
   },
   {
     path: 'contact',
