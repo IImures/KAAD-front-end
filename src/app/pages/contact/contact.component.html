@@ -5,25 +5,31 @@
         <h2 class="text-center head mb-4">{{title}}</h2>
         <form>
           <div class ='d-flex flex-row mb-4'>
-            <input type="text" class="form-control  name" placeholder="imię i nazwisko" required>
-            <input type="tel" class="form-control phone" placeholder="nr telefonu" required>
+            <input type="text" class="form-control  name" placeholder="{{fullNameLabel}}" required>
+            <input type="tel" class="form-control phone" placeholder="{{phoneLabel}}" required>
           </div>
           <div class=" mb-4">
-            <input type="email" class="form-control w-100" placeholder="email" required>
+            <input type="email" class="form-control w-100" placeholder="{{emailLabel}}" required>
           </div>
           <select class="form-select mb-4">
 
-            <option selected disabled>Rodzaj usługi</option>
-            <!-- Add options here -->
+            <option selected disabled>{{ serviceTypeLabel }}</option>
+
+            <option *ngFor="let service of services" [value]="service">
+              {{ service }}
+            </option>
 
           </select>
           <select class="form-select mb-4">
 
-            <option selected disabled>Metoda komunikacji</option>
-            <!-- Add options here -->
+            <option selected disabled>{{communicationMethodLabel}}</option>
+
+            <option *ngFor="let contactType of contactTypes" [value]="contactType.id">
+              {{ contactType.contactType }}
+            </option>
 
           </select>
-          <button type="submit" class="btn submit-btn w-100">Wyślij formularz</button>
+          <button type="submit" class="btn submit-btn w-100">{{sendFormLabel}}</button>
         </form>
       </div>
 

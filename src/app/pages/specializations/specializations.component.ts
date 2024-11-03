@@ -71,7 +71,7 @@ export class SpecializationsComponent implements OnInit {
       }
     })
 
-    this.specializationService.getSpecialization()
+    this.specializationService.getSpecializations()
       .subscribe({
         next: data => {
           this.specializations = data;

@@ -138,7 +138,7 @@ export class HeaderComponent implements OnInit{
   }
 
   private loadSpecializations(linkInfo: any) {
-    this.specializationService.getSpecialization().subscribe(infos => {
+    this.specializationService.getSpecializations().subscribe(infos => {
       linkInfo.dropdown = infos.map(info => ({
         id: info.id,
         name: info.generalInfo.content

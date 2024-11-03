@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {LanguageService} from "./language.service";
 import {SpecializationDetails} from "../interfaces/specialization-details";
+import {SpecializationPageDetails} from "../interfaces/specialization-page-details";
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,19 @@ export class SpecializationService {
     );
   }
 
-  getSpecialization() {
+  getSpecializations() {
     let params = new HttpParams().set('lang', this.lang);
     return this.http.get<SpecializationDetails[]>(this.url, {params: params});
+  }
+
+  getSpecialization(specId: string) {
+    let params = new HttpParams().set('lang', this.lang);
+    return this.http.get<SpecializationDetails>(`${this.url}/${specId}`, {params: params});
+  }
+
+  getSpecializationPage(specId: string){
+    let params = new HttpParams().set('lang', this.lang);
+    return this.http.get<SpecializationPageDetails>(`${this.url}/${specId}/page`, {params: params});
   }
 
 }
