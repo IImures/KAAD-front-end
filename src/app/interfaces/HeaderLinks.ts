@@ -10,4 +10,6 @@ export interface HeaderLinks {
 export interface DropdownItem {
   id: string;
   name: string;
+  url: string;
+  action: () => void;
 }

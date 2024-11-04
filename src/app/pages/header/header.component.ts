@@ -141,9 +141,18 @@ export class HeaderComponent implements OnInit{
     this.specializationService.getSpecializations().subscribe(infos => {
       linkInfo.dropdown = infos.map(info => ({
         id: info.id,
-        name: info.generalInfo.content
+        name: info.generalInfo.content,
+        url: 'specialization/' + info.id,
+        action: () => this.openSpecLink(info.id),
       }));
+      linkInfo.dropdown.forEach((item : any) => {
+        console.log(item.url)
+      })
     });
+  }
+
+  openSpecLink(specId: string) {
+    this.router.navigate(['specialization', specId]);
   }
 
   @HostListener('window:scroll', ['$event'])

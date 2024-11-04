@@ -26,8 +26,8 @@
 
             <ng-container *ngIf="!link.active">
               <ul  *ngIf="isListShown" class="dropdown-menu">
-                <li class ="dropdown-menu-element" *ngFor="let subLink of link.dropdown">
-                  <a [routerLink]="link.url + '/' + subLink.id">{{ subLink.name }}</a>
+                <li class ="dropdown-menu-element" *ngFor="let subLink of link.dropdown" >
+                  <a (click)="subLink.action()" [routerLink]="subLink.url">{{ subLink.name }}</a>
                 </li>
               </ul>
             </ng-container>

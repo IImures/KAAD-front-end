@@ -6,12 +6,24 @@ import {SpecializationService} from "../../services/specialization.service";
 import {NgForOf} from "@angular/common";
 import {ContactServiceService} from "../../services/contact-service.service";
 import {ContactTypeDetails} from "../../interfaces/ContactTypeDetails";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
+import {ContactDetails} from "../../interfaces/ContactDetails";
 
 @Component({
   selector: 'app-contact',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
@@ -31,13 +43,50 @@ export class ContactComponent implements OnInit{
   public services!: string[];
   public contactTypes!: ContactTypeDetails[];
 
+  contactForm: FormGroup;
+
   constructor(
     private languageService: LanguageService,
     private generalInfoService: GeneralInfoService,
     private specializationService: SpecializationService,
-    private contactService: ContactServiceService
+    private contactService: ContactServiceService,
+    private fb: FormBuilder,
   ) {
+    this.contactForm = this.fb.nonNullable.group({
+      fullName: ['', Validators.required],
+      phone: ['', [Validators.pattern('^\\+?[0-9]{7,15}$')]],
+      email: ['', [Validators.email]],
+      serviceType: ['', Validators.required],
+      communicationMethod: ['', Validators.required]
+    }, { validators: this.phoneOrEmailValidator });
   }
+
+  onSubmit() {
+
+    if (this.contactForm.valid) {
+      const formData : ContactDetails = this.contactForm.value;
+      console.log(formData);
+      // this.http.post('https://your-backend-api.com/submit', formData)
+      //   .subscribe({
+      //     next: (response: any) => {
+      //
+      //     },
+      //     error: (error) => {
+      //
+      //     }
+      //   });
+    }
+
+  }
+
+  phoneOrEmailValidator: ValidatorFn = (control: AbstractControl): { [key: string]: boolean } | null => {
+    const phone = control.get('phone')?.value;
+    const email = control.get('email')?.value;
+    if (!phone && !email) {
+      return { phoneOrEmailRequired: true };
+    }
+    return null;
+  };
 
   ngOnInit() {
     this.updateInfo();

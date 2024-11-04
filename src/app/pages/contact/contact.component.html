@@ -3,38 +3,26 @@
     <div class="col-lg-6">
       <div class="form-container">
         <h2 class="text-center head mb-4">{{title}}</h2>
-        <form>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class ='d-flex flex-row mb-4'>
-            <input type="text" class="form-control  name" placeholder="{{fullNameLabel}}" required>
-            <input type="tel" class="form-control phone" placeholder="{{phoneLabel}}" required>
+            <input type="text" formControlName="fullName" class="form-control name" placeholder="{{fullNameLabel}}" required>
+            <input type="tel" formControlName="phone" class="form-control phone" placeholder="{{phoneLabel}}">
           </div>
-          <div class=" mb-4">
-            <input type="email" class="form-control w-100" placeholder="{{emailLabel}}" required>
+          <div class="mb-4">
+            <input type="email" formControlName="email" class="form-control w-100" placeholder="{{emailLabel}}">
           </div>
-          <select class="form-select mb-4">
-
-            <option selected disabled>{{ serviceTypeLabel }}</option>
-
-            <option *ngFor="let service of services" [value]="service">
-              {{ service }}
-            </option>
-
+          <select formControlName="serviceType" class="form-select mb-4">
+            <option value="" selected disabled>{{ serviceTypeLabel }}</option>
+            <option *ngFor="let service of services" [value]="service">{{ service }}</option>
           </select>
-          <select class="form-select mb-4">
-
-            <option selected disabled>{{communicationMethodLabel}}</option>
-
-            <option *ngFor="let contactType of contactTypes" [value]="contactType.id">
-              {{ contactType.contactType }}
-            </option>
-
+          <select formControlName="communicationMethod" class="form-select mb-4">
+            <option value="" selected disabled>{{communicationMethodLabel}}</option>
+            <option *ngFor="let contactType of contactTypes" [value]="contactType.id">{{ contactType.contactType }}</option>
           </select>
           <button type="submit" class="btn submit-btn w-100">{{sendFormLabel}}</button>
         </form>
       </div>
-
       <p class = 'text-start mt-4 invite-text'>{{description}}</p>
-
     </div>
     <div class="col-lg-5">
       <div class="map-container">
