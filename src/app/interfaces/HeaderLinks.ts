@@ -11,5 +11,5 @@ export interface DropdownItem {
   id: string;
   name: string;
   url: string;
-  action: () => void;
+  action: (i:number) => void;
 }

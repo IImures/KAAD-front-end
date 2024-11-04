@@ -40,20 +40,7 @@ export class HeaderComponent implements OnInit{
       url: 'specializations',
       action: (i:number) => this.showSpecializationList(i),
       active: false,
-      dropdown: [
-        // {
-        //   id: '1',
-        //   name: 'Odszkodowania',
-        // },
-        // {
-        //   id: '2',
-        //   name: 'Windukacja',
-        // },
-        // {
-        //   id: '3',
-        //   name: 'Zamówinie publiczne',
-        // }
-      ]
+      dropdown: []
     },
     {
       label: '',
@@ -77,6 +64,7 @@ export class HeaderComponent implements OnInit{
 
   isScrolled:boolean = false;
   isListShown: boolean = false;
+  isClickedInDropdown : boolean = false;
   activeDropdownIndex: number | null = null;
   loaded = false;
 
@@ -143,15 +131,18 @@ export class HeaderComponent implements OnInit{
         id: info.id,
         name: info.generalInfo.content,
         url: 'specialization/' + info.id,
-        action: () => this.openSpecLink(info.id),
+        action: (index:number) => this.openSpecLink(info.id, index),
       }));
-      linkInfo.dropdown.forEach((item : any) => {
-        console.log(item.url)
-      })
+
     });
   }
 
-  openSpecLink(specId: string) {
+  openSpecLink(specId: string, index: number) {
+    console.log("Opening: ", specId)
+    this.isListShown = false;
+    this.activeDropdownIndex = null;
+    this.isClickedInDropdown = true;
+    this.navListService.setActive(index);
     this.router.navigate(['specialization', specId]);
   }
 
@@ -177,6 +168,11 @@ export class HeaderComponent implements OnInit{
   }
 
   private isClickInsideDropdown(event: Event): boolean {
+    if(this.isClickedInDropdown){ // if user clicks on dropdown link
+      this.isClickedInDropdown = false;
+      return true;
+    }
+
     const dropdowns = document.querySelectorAll('.dropdown-menu');
     if (dropdowns.length == 0) {
       return false;

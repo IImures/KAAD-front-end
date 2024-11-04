@@ -27,7 +27,7 @@ export class SpecializationPageComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id'); // TODO Remake into observable
 
     if(!id) return;
     this.id = id;
