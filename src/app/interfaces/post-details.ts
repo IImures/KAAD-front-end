@@ -1,7 +1,8 @@
 export interface PostDetails {
   postId: string;
   author: string;
-  createdAt: string;
+  authorId: string;
   content: string;
+  createdAt: string;
   contentLength: number;
 }

@@ -26,8 +26,8 @@ export class SpecializationService {
     );
   }
 
-  getSpecializations() {
-    let params = new HttpParams().set('lang', this.lang);
+  getSpecializations(showHidden : boolean = false) {
+    let params = new HttpParams().set('lang', this.lang).set('showHidden', showHidden);
     return this.http.get<SpecializationDetails[]>(this.url, {params: params});
   }
 

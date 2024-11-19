@@ -1,5 +1,8 @@
-<app-header></app-header>
-<main class="d-flex justify-content-center test">
+<app-header *ngIf="showHeader"></app-header>
+<main
+  [class.no-header] = "!showHeader"
+>
   <router-outlet></router-outlet>
 </main>
-<app-footer></app-footer>
+<!--<router-outlet name="dashboard"></router-outlet>-->
+<app-footer *ngIf="showFooter"></app-footer>

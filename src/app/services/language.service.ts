@@ -29,9 +29,16 @@ export class LanguageService{
     return this.http.get<LanguageDetails[]>(this.url);
   }
 
-
   changeLanguage(lang: LanguageDetails) {
-    this.languageSubject.next(lang.code);
+    this.languageSubject.next();
     this.localStorage.setItem('lang', lang.code);
+  }
+
+  createLanguage(form: FormData) {
+    return this.http.post<LanguageDetails>(this.url, form);
+  }
+
+  deleteLanguage(id: string) {
+    return this.http.delete<LanguageDetails>(`${this.url}/${id}` );
   }
 }

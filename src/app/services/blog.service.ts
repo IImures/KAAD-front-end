@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {LanguageService} from "./language.service";
-import {ContactTypeDetails} from "../interfaces/ContactTypeDetails";
-import {ContactDetails} from "../interfaces/ContactDetails";
+import {PostDetails} from "../interfaces/post-details";
+import {PageInterface} from "../interfaces/PageInterface";
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +27,16 @@ export class BlogService {
     );
   }
 
-  getContactTypes() {
-    return this.http.get<ContactTypeDetails[]>(`${this.url}/type`);
+  getPosts(
+    limit: number,
+    page: number,
+
+  ){
+    const params = new HttpParams()
+      .set('limit', limit.toString())
+      .set('page', page.toString());
+    return this.http.get<PageInterface<PostDetails>>(this.url, {params: params});
   }
 
-  sendContact(form: ContactDetails) {
-    return this.http.post<ContactDetails>(this.url, {params: form});
-  }
 
 }

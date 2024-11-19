@@ -31,7 +31,8 @@ export class ContactServiceService {
   }
 
   sendContact(form: ContactDetails) {
-    return this.http.post<ContactDetails>(this.url, {params: form});
+    form.languageCode = this.lang;
+    return this.http.post<ContactDetails>(this.url, form);
   }
 
 }

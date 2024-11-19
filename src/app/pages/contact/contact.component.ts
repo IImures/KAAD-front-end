@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {LanguageService} from "../../services/language.service";
 import {GeneralInfoService} from "../../services/general-info.service";
 import {debounceTime, forkJoin} from "rxjs";
@@ -16,6 +16,8 @@ import {
   Validators
 } from "@angular/forms";
 import {ContactDetails} from "../../interfaces/ContactDetails";
+import {MessageDialogComponent} from "../../components/message-dialog/message-dialog.component";
+import {SpecializationDetails} from "../../interfaces/specialization-details";
 
 @Component({
   selector: 'app-contact',
@@ -23,7 +25,8 @@ import {ContactDetails} from "../../interfaces/ContactDetails";
   imports: [
     NgForOf,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MessageDialogComponent
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
@@ -40,8 +43,15 @@ export class ContactComponent implements OnInit{
   public communicationMethodLabel!: string;
   public sendFormLabel!: string;
 
-  public services!: string[];
+  public services!: SpecializationDetails[];
   public contactTypes!: ContactTypeDetails[];
+
+  @ViewChild(MessageDialogComponent) messageDialog!: MessageDialogComponent;
+  public dialogErrorMessage!: string;
+  public dialogSuccessMessage!: string;
+  public serverErrorMessage!: string;
+
+  public dialogMessage!: string;
 
   contactForm: FormGroup;
 
@@ -54,11 +64,11 @@ export class ContactComponent implements OnInit{
   ) {
     this.contactForm = this.fb.nonNullable.group({
       fullName: ['', Validators.required],
-      phone: ['', [Validators.pattern('^\\+?[0-9]{7,15}$')]],
-      email: ['', [Validators.email]],
-      serviceType: ['', Validators.required],
-      communicationMethod: ['', Validators.required]
-    }, { validators: this.phoneOrEmailValidator });
+      phoneNumber: ['', Validators.pattern('^\\+?[0-9]{7,15}$')],
+      email: ['', Validators.email],
+      specializationId: ['', Validators.required],
+      contactTypeId: ['', Validators.required]
+    } , { validators: this.phoneOrEmailValidator });
   }
 
   onSubmit() {
@@ -66,21 +76,27 @@ export class ContactComponent implements OnInit{
     if (this.contactForm.valid) {
       const formData : ContactDetails = this.contactForm.value;
       console.log(formData);
-      // this.http.post('https://your-backend-api.com/submit', formData)
-      //   .subscribe({
-      //     next: (response: any) => {
-      //
-      //     },
-      //     error: (error) => {
-      //
-      //     }
-      //   });
+      this.contactService.sendContact(formData).subscribe({
+        next: () => {
+          this.dialogMessage = this.dialogSuccessMessage;
+          this.messageDialog.showDialog();
+        },
+        error: () => {
+          this.dialogMessage = this.serverErrorMessage;
+          this.messageDialog.showDialog();
+        }
+      })
+
+    }else{
+      console.log(this.contactForm.value);
+      this.dialogMessage = this.dialogErrorMessage;
+      this.messageDialog.showDialog();
     }
 
   }
 
   phoneOrEmailValidator: ValidatorFn = (control: AbstractControl): { [key: string]: boolean } | null => {
-    const phone = control.get('phone')?.value;
+    const phone = control.get('phoneNumber')?.value;
     const email = control.get('email')?.value;
     if (!phone && !email) {
       return { phoneOrEmailRequired: true };
@@ -101,15 +117,16 @@ export class ContactComponent implements OnInit{
       this.generalInfoService.getInfo('emailLabel'),
       this.generalInfoService.getInfo('phoneNumberLabel'),
       this.generalInfoService.getInfo('serviceTypeLabel'),
-      this.generalInfoService.getInfo('comunicationMethodLabel'),
+      this.generalInfoService.getInfo('communicationMethodLabel'),
       this.generalInfoService.getInfo('sendFormLabel'),
+      this.generalInfoService.getInfo('errorFormLabel'),
+      this.generalInfoService.getInfo('successFormLabel'),
+      this.generalInfoService.getInfo('serverErrorFormLabel'),
     ];
 
-    this.specializationService.getSpecializations().subscribe(
+    this.specializationService.getSpecializations(true).subscribe(
       (responses) => {
-        this.services = responses.map((value) => {
-          return value.generalInfo.content;
-        });
+        this.services = responses;
       }
     );
 
@@ -129,6 +146,9 @@ export class ContactComponent implements OnInit{
         serviceTypeLabel,
         communicationMethodLabel,
         sendFormLabel,
+        errorFormLabel,
+        successFormLabel,
+        serverErrorFormLabel,
       ] = responses;
 
       this.title = contactTitle.content;
@@ -139,6 +159,9 @@ export class ContactComponent implements OnInit{
       this.serviceTypeLabel = serviceTypeLabel.content;
       this.sendFormLabel = sendFormLabel.content;
       this.communicationMethodLabel = communicationMethodLabel.content;
+      this.dialogErrorMessage = errorFormLabel.content;
+      this.dialogSuccessMessage = successFormLabel.content;
+      this.serverErrorMessage = serverErrorFormLabel.content;
     });
   }
 

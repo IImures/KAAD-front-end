@@ -2,10 +2,10 @@
 <header [class.scrolled]="isScrolled">
     <div class = "logo-and-language">
         <div class = "logo-images">
-          <a [routerLink]="'/about'" class="no-style" routerLinkActive="true">
+          <a [routerLink]="'/about'" (click)="navListService.setActive(0)" class="no-style" routerLinkActive="true">
             <img class ="AD-letters" src="/assets/AD-logo.png" width="48" height="48" alt="AD-letters">
           </a>
-          <a [routerLink]="'/about'" class="no-style" routerLinkActive="true">
+          <a [routerLink]="'/about'" (click)="navListService.setActive(0)" class="no-style" routerLinkActive="true">
             <img class = "KAAD-logo" src="/assets/KAAD-logo.png" width="200" height="48" alt="Adrian Dzienkiewicz Kancelaria Adwokacka">
           </a>
         </div>

@@ -35,7 +35,7 @@ export class PostComponent implements OnInit{
   isPostHidden!: boolean;
 
   processTime(created_at: string) {
-    let date = new Date(parseInt(created_at));
+    let date = new Date(created_at);
     let diffTime = this.getDiffTime(date);
 
     if(diffTime.totalHours > 8){
@@ -58,8 +58,10 @@ export class PostComponent implements OnInit{
   }
 
   private getShortTime(diffTime: any) : string {
-    if (diffTime.totalHours > 0) {
-      const hours = diffTime.totalHours;
+    const hours = Math.floor(diffTime.totalMinutes / 60);
+    const minutes = diffTime.totalMinutes % 60;
+
+    if (hours > 0) {
       if (hours === 1) {
         return `${hours} godzinę temu`;
       } else if (hours >= 2 && hours <= 4) {
@@ -68,7 +70,6 @@ export class PostComponent implements OnInit{
         return `${hours} godzin temu`;
       }
     } else {
-      const minutes = diffTime.totalMinutes;
       if (minutes === 1) {
         return `${minutes} minuta temu`;
       } else if (minutes >= 2 && minutes <= 4) {

@@ -1,8 +1,16 @@
 @import "../styles.scss";
 
 main{
+  display: flex;
+  justify-content: center;
   min-height: 90vh;
   flex-wrap: wrap;
-  align-content: center;
+  //align-content: center;
   padding-top: $header-height;
+
+  &.no-header {
+    display: block;
+    padding-top: 0;
+  }
 }
+

@@ -1,0 +1,59 @@
+<div class="container">
+  <h1>Languages</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Language</th>
+      <th>Code</th>
+      <th>Default</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let language of languages">
+      <td>{{ language.id }}</td>
+      <td>
+        <span *ngIf="editingLanguageId !== language.id">{{ language.language }}</span>
+        <input *ngIf="editingLanguageId === language.id" [(ngModel)]="editedLanguage.language">
+      </td>
+      <td>
+        <span *ngIf="editingLanguageId !== language.id">{{ language.code }}</span>
+        <input *ngIf="editingLanguageId === language.id" [(ngModel)]="editedLanguage.code">
+      </td>
+      <td>
+        <span *ngIf="editingLanguageId !== language.id">
+          <span *ngIf="language.defaultLanguage">Yes</span>
+          <span *ngIf="!language.defaultLanguage">No</span>
+        </span>
+        <select *ngIf="editingLanguageId === language.id" [(ngModel)]="editedLanguage.defaultLanguage">
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </td>
+      <td>
+        <button *ngIf="editingLanguageId !== language.id"
+                class="btn btn-primary btn-sm"
+                (click)="editLanguage(language.id, language)">
+          Edit
+        </button>
+        <button *ngIf="editingLanguageId !== language.id"
+                class="btn btn-danger btn-sm"
+                (click)="deleteLanguage(language.id)">
+          Delete
+        </button>
+        <button *ngIf="editingLanguageId === language.id"
+                class="btn btn-success btn-sm"
+                (click)="confirmEditLanguage(language.id)">
+          Confirm
+        </button>
+        <button *ngIf="editingLanguageId === language.id"
+                class="btn btn-secondary btn-sm"
+                (click)="cancelEditLanguage()">
+          Cancel
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

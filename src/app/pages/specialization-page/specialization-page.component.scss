@@ -13,7 +13,7 @@
 }
 
 .header-custom{
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .article-container{
@@ -77,9 +77,6 @@
 }
 
 @media (min-width: 425px) {
-  .header-custom {
-    flex-direction: row;
-  }
 
   .header-custom h1 {
     margin-bottom: 0;

@@ -3,5 +3,6 @@ export interface ContactDetails {
   phoneNumber?: string;
   email?: string;
   contactTypeId: number;
-  reason: string;
+  specializationId: number;
+  languageCode: string;
 }

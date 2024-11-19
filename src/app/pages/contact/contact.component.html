@@ -4,18 +4,18 @@
       <div class="form-container">
         <h2 class="text-center head mb-4">{{title}}</h2>
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <div class ='d-flex flex-row mb-4'>
+          <div class ='d-flex flex-row mb-3'>
             <input type="text" formControlName="fullName" class="form-control name" placeholder="{{fullNameLabel}}" required>
-            <input type="tel" formControlName="phone" class="form-control phone" placeholder="{{phoneLabel}}">
+            <input type="tel" formControlName="phoneNumber" class="form-control phone" placeholder="{{phoneLabel}}">
           </div>
           <div class="mb-4">
             <input type="email" formControlName="email" class="form-control w-100" placeholder="{{emailLabel}}">
           </div>
-          <select formControlName="serviceType" class="form-select mb-4">
+          <select formControlName="specializationId" class="form-select mb-4">
             <option value="" selected disabled>{{ serviceTypeLabel }}</option>
-            <option *ngFor="let service of services" [value]="service">{{ service }}</option>
+            <option *ngFor="let service of services" [value]="service.id">{{ service.generalInfo.content }}</option>
           </select>
-          <select formControlName="communicationMethod" class="form-select mb-4">
+          <select formControlName="contactTypeId" class="form-select mb-4">
             <option value="" selected disabled>{{communicationMethodLabel}}</option>
             <option *ngFor="let contactType of contactTypes" [value]="contactType.id">{{ contactType.contactType }}</option>
           </select>
@@ -36,3 +36,6 @@
     </div>
   </div>
 </div>
+
+<app-message-dialog [message]="dialogMessage"></app-message-dialog>
+

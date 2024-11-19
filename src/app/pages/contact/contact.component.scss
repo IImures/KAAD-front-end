@@ -21,12 +21,12 @@
   font-weight: bold;
 }
 .name{
-  width: 70%;
+  width: 60%;
 }
 
 .phone{
-  width: 30%;
-  margin-left: 3rem;
+  width: 40%;
+  margin-left: 1rem;
 }
 
 .form-select{
@@ -57,8 +57,8 @@
 }
 
 .map-container{
-  width: 25rem;
-  height: 25rem;
+  width:25rem;
+  height:25rem;
 }
 
 iframe {
@@ -66,13 +66,13 @@ iframe {
   height: 100%;
 }
 
-//@media (max-width: 1024px) {
-//  iframe {
-//    width: 22rem;
-//    height: 22rem;
-//  }
-//}
-//
+@media (max-width: 425px) {
+  .map-container {
+    width: 20rem;
+    height: 20rem;
+  }
+}
+
 @media (max-width: 375px) {
   .map-container{
     width: 20rem;
@@ -84,3 +84,17 @@ iframe {
     height: 20rem;
   }
 }
+
+@media (max-width: 350px) {
+  .map-container{
+    width: 15rem;
+    height: 15rem;
+  }
+
+  iframe {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+
