@@ -7,6 +7,7 @@
       <th>Language</th>
       <th>Code</th>
       <th>Default</th>
+      <th>Image</th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -30,6 +31,21 @@
           <option [ngValue]="true">Yes</option>
           <option [ngValue]="false">No</option>
         </select>
+      </td>
+      <td>
+        <span *ngIf="editingLanguageId !== language.id">
+          <img
+            style="width: 28px;height: 16px"
+            width="32"
+            height="16"
+            [alt]="language.language + ' language icon'"
+            [src]="environment.apiUrl+'/'+environment.apiVersion+'/language/'+language.id+'/icon'"
+          >
+        </span>
+        <div *ngIf="editingLanguageId === language.id">
+          <input type="file" (change)="onImageSelected($event)" accept="image/*">
+          <img *ngIf="previewImage" [src]="previewImage" alt="Preview" style="width: 28px; height: 16px; margin-top: 5px;">
+        </div>
       </td>
       <td>
         <button *ngIf="editingLanguageId !== language.id"

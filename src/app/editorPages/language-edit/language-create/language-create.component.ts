@@ -1,4 +1,4 @@
-import {Component, Output} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {LanguageService} from "../../../services/language.service";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
@@ -14,7 +14,7 @@ import {LanguageRequest} from "../LanguageRequest";
   templateUrl: './language-create.component.html',
   styleUrl: './language-create.component.scss'
 })
-export class LanguageCreateComponent {
+export class LanguageCreateComponent implements OnInit{
   languageForm!: FormGroup;
   selectedImage: File | null = null;
   imagePreview: string | null = null;
@@ -27,7 +27,6 @@ export class LanguageCreateComponent {
   ) {}
 
   ngOnInit(): void {
-
     this.languageForm = this.fb.group({
       language: ['', Validators.required],
       code: ['', [Validators.required, Validators.minLength(2)]],

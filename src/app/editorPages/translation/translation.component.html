@@ -1,0 +1,27 @@
+<h2>Tłumaczenie strony</h2>
+<select (change)="selectLanguage($event)" class="form-select mb-4">
+  <option selected disabled>Docelowy język</option>
+  <option *ngFor="let language of languages" [value]="language.id">{{language.language}}</option>
+</select>
+<table *ngIf="selectedLanguage" class="table table-striped">
+  <thead>
+  <tr>
+    <th>Kod Tekstu</th>
+    <th>Standardowa wartość</th>
+    <th>Przetłumaczona wartość</th>
+    <th>Akcja</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let label of labels">
+      <td>{{label.code}}</td>
+      <td>{{label.content}}</td>
+      <td>
+        <input [(ngModel)]="label.translatedValue" class="form-control" style="min-width: 300px" >
+      </td>
+      <td>
+        <button class="btn btn-primary" (click)="saveTranslation(label)">Zapisz</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

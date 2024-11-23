@@ -59,7 +59,7 @@ export class AboutUsComponent implements OnInit {
           this.ourTeamTitle = teamInfo.content;
         },
         error: (error) => {
-          console.error('Error fetching information:', error);
+          console.error(error);
         }
       })
   }

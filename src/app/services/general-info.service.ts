@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {LanguageService} from "./language.service";
 import {GeneralInfoDetails} from "../interfaces/GeneralInfoDetails";
+import {GeneralInfoRequest} from "../interfaces/GeneralInfoRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,21 @@ export class GeneralInfoService {
     return this.http.get<GeneralInfoDetails>(`${this.url}/${code}`,
       {params: params}
     );
+  }
+
+  getInfoWithLang(code: string, lang: string) {
+    let params = new HttpParams().set('lang', lang);
+    return this.http.get<GeneralInfoDetails>(`${this.url}/${code}`,
+      {params: params}
+    );
+  }
+
+  getLabels() {
+    return this.http.get<GeneralInfoDetails[]>(`${this.url}/labels`);
+  }
+
+  updateLabel(updatedLabel: GeneralInfoRequest, lang: string) {
+    let params = new HttpParams().set('lang', lang).set('code', updatedLabel.code);
+    return this.http.put<GeneralInfoDetails>(`${this.url}`, updatedLabel,{params: params});
   }
 }

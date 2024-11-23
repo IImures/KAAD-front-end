@@ -4,5 +4,7 @@ export interface GeneralInfoDetails {
   id: string,
   content: string,
   code: string,
-  language: LanguageDetails
+  language: LanguageDetails,
+  isLabel : boolean
 }
+

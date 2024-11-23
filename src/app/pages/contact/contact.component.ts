@@ -76,6 +76,7 @@ export class ContactComponent implements OnInit{
     if (this.contactForm.valid) {
       const formData : ContactDetails = this.contactForm.value;
       console.log(formData);
+      this.contactService.sendContact(formData);
       this.contactService.sendContact(formData).subscribe({
         next: () => {
           this.dialogMessage = this.dialogSuccessMessage;
