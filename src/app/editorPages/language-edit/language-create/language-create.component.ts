@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LanguageService} from "../../../services/language.service";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
@@ -43,7 +43,6 @@ export class LanguageCreateComponent implements OnInit{
       if (file.type.startsWith('image/')) {
         this.selectedImage = file;
 
-        // Create a preview of the image
         const reader = new FileReader();
         reader.onload = () => {
           this.imagePreview = reader.result as string;

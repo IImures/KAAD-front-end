@@ -1,9 +1,9 @@
 <div class="p-4 blog-item rounded-5"
-  id="'p-'{{post.postId}}"
+  id="'p-'{{post.id}}"
 >
   <div class ='d-flex flex-row'>
     <div class ='author-img'>
-
+      <img alt="Author avatar" src="{{environment.apiUrl+'/'+environment.apiVersion+'/post/' + post.id + '/author-image'}}">
     </div>
     <div class = 'd-flex flex-column'>
       <div class ='d-flex flex-row mb-1 blog-head'>

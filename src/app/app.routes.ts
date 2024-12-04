@@ -5,7 +5,6 @@ import {ContactComponent} from "./pages/contact/contact.component";
 import {BlogComponent} from "./pages/blog/blog.component";
 import {SpecializationPageComponent} from "./pages/specialization-page/specialization-page.component";
 import {RoleGuardService} from "./services/role-guard.service";
-import {TranslationComponent} from "./editorPages/translation/translation.component";
 
 export const routes: Routes = [
 
@@ -56,6 +55,10 @@ export const routes: Routes = [
       {
         path: 'translate',
         loadComponent: () => import('./editorPages/translation/translation.component').then(m => m.TranslationComponent),
+      },
+      {
+        path: 'spec',
+        loadComponent: () => import('./editorPages/specialization-edit/specialization-edit.component').then(m => m.SpecializationEditComponent),
       }
     ]
   },

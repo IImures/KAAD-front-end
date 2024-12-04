@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PostDetails} from "../../../interfaces/post-details";
 import {NgIf} from "@angular/common";
+import {environment} from "../../../../environments/environment";
 
 const months = [
   'stycznia',
@@ -108,4 +109,6 @@ export class PostComponent implements OnInit{
   ngOnInit(): void {
     this.isPostHidden = this.ifHidePost();
   }
+
+  protected readonly environment = environment;
 }
