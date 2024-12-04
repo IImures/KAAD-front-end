@@ -1,1 +1,51 @@
-<p>specialization-list works!</p>
+
+<select (change)="selectLanguage($event)" class="form-select mb-4">
+  <option selected disabled>Docelowy język</option>
+  <option *ngFor="let language of languages" [value]="language.id">{{language.language}}</option>
+</select>
+
+<table *ngIf="selectedLanguage" class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Photo</th>
+    <th>Content</th>
+    <th>Is Hidden</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of specializationList">
+    <td>{{ item.id }}</td>
+    <td>
+      <img *ngIf="editedSpecializationId !== item.id" ngSrc="{{environment.apiUrl+'/'+environment.apiVersion+'/specialization/'+item.id+'/photo'}}" alt="Specialization Icon" style="width: 50px; height: 50px" class="mb-3" width="128" height="128">
+      <div *ngIf="editedSpecializationId === item.id">
+        <input type="file" (change)="onImageSelected($event)" accept="image/*">
+        <img *ngIf="previewImage" [src]="previewImage" alt="Preview" style="width: 50px; height: 50px;">
+      </div>
+    </td>
+    <td>
+      <span *ngIf="editedSpecializationId !== item.id">{{ item.generalInfo.content }}</span>
+      <input *ngIf="editedSpecializationId === item.id" [(ngModel)]="editedSpecialization.specializationNames[0].content">
+    </td>
+    <td>
+      <span *ngIf="editedSpecializationId !== item.id">{{item.isHidden ? 'Hidden' : 'Not hidden'}}</span>
+
+      <select *ngIf="editedSpecializationId === item.id" [(ngModel)]="editedSpecialization.isHidden" >
+        <option [ngValue]="true">Yes</option>
+        <option [ngValue]="false">No</option>
+      </select>
+    </td>
+    <td>
+      <button *ngIf="editedSpecializationId !== item.id" class="btn btn-sm btn-warning" (click)="editItem(item)">Edit</button>
+      <button *ngIf="editedSpecializationId !== item.id" class="btn btn-sm btn-danger" (click)="deleteItem(item)">Delete</button>
+      <button *ngIf="editedSpecializationId === item.id"
+              class="btn btn-success btn-sm"
+              (click)="confirmEditSpec(item.id)"> Confirm </button>
+      <button *ngIf="editedSpecializationId === item.id"
+              class="btn btn-secondary btn-sm"
+              (click)="cancelEditSpec()"> Cancel </button>
+    </td>
+  </tr>
+  </tbody>
+</table>

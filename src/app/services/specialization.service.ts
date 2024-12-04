@@ -26,8 +26,14 @@ export class SpecializationService {
     );
   }
 
-  getSpecializations(showHidden : boolean = false) {
-    let params = new HttpParams().set('lang', this.lang).set('showHidden', showHidden);
+  getSpecializations(showHidden : boolean = false, lang: string | null = null) {
+    let params = new HttpParams().set('showHidden', showHidden);
+    if(lang){
+      params = params.set('lang', lang);
+    }
+    else{
+      params = params.set('lang', this.lang);
+    }
     return this.http.get<SpecializationDetails[]>(this.url, {params: params});
   }
 
@@ -41,4 +47,11 @@ export class SpecializationService {
     return this.http.get<SpecializationPageDetails>(`${this.url}/${specId}/page`, {params: params});
   }
 
+  updateSpecialization(id: string, form: FormData) {
+    return this.http.put<SpecializationDetails>(`${this.url}/${id}`, form);
+  }
+
+  deleteSpecialization(id: any) {
+    return this.http.delete<SpecializationDetails>(`${this.url}/${id}`);
+  }
 }

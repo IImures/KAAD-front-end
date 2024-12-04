@@ -2,5 +2,6 @@ import {GeneralInfoDetails} from "./GeneralInfoDetails";
 
 export interface SpecializationDetails {
   id: string,
-  generalInfo: GeneralInfoDetails
+  generalInfo: GeneralInfoDetails,
+  isHidden: boolean
 }
