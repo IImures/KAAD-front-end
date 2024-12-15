@@ -55,8 +55,6 @@ export class SpecializationListComponent implements OnInit {
         this.languages = languages;
       }
     );
-
-
   }
 
   deleteItem(item : SpecializationDetails) {
@@ -154,5 +152,6 @@ export class SpecializationListComponent implements OnInit {
     });
     this.cancelEditSpec();
   }
+
 }
 

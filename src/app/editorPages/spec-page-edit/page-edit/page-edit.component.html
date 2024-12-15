@@ -1,0 +1,65 @@
+<h2 *ngIf="specialization">Strona Specjalizacji {{this.specialization.generalInfo.content}}</h2>
+
+<select (change)="selectLanguage($event)" class="form-select mb-4">
+  <option selected disabled>Docelowy język</option>
+  <option *ngFor="let language of languages" [value]="language.id">{{language.language}}</option>
+</select>
+
+<div *ngIf="selectedLanguage" class ="d-flex flex-row ">
+  <div class ="d-flex flex-column m-1" >
+
+    <div class="editor-container editor-container_classic-editor" #editorContainerElement>
+      <div class="editor-container__editor">
+        <div #editorElement>
+          <ckeditor
+            [editor]="Editor"
+            [config]="config"
+            [(ngModel)]="specializationPage.pageContents[0].content"
+            [data]="specializationPage.pageContents[0].content" *ngIf="isLayoutReady" />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class ="d-flex flex-column" >
+    <div *ngIf="imageExists" class ="d-flex flex-column">
+    <h3>Istniejący obrazek</h3>
+    <img
+         class="side-photo"
+         [src]="environment.apiUrl+'/'+environment.apiVersion+'/specialization/'+specId+'/page/photo'"
+         (error)="onImageError()"
+         alt="Specialization Photo"
+        style="width: 300px; height: 300px"
+    >
+    <button
+    (click)="deleteImage()"
+    class="btn btn-danger"
+    > Usunąć ten obrazek</button>
+    </div>
+    <div class="form-group mb-3">
+      <label for="image">Obrazek</label>
+      <input
+        id="image"
+        type="file"
+        class="form-control"
+        (change)="onImageSelected($event)"
+        accept="image/*"
+      />
+    </div>
+
+    <div *ngIf="imagePreview" class="d-flex flex-column">
+      <label style="padding-right: 2rem">Przegląd</label>
+      <img [src]="imagePreview" alt="Image Preview" class="img-thumbnail" style="width: 300px; height: 300px" />
+      <button
+        (click)="cancelSelectedImage()"
+        class="btn btn-warning"
+      >Nie dodawaj ten obrazek</button>
+    </div>
+
+  </div>
+</div>
+<div *ngIf="selectedLanguage" class ="d-flex flex-row">
+  <button (click)="updateSpecPage()" class = "btn btn-primary m-1">Zapisz</button>
+  <button *ngIf="specPageExists" (click)="deleteSpecPage()" class = "btn btn-danger m-1">Usuń</button>
+</div>

@@ -1,0 +1,23 @@
+<h2>Wybór specjalizacji</h2>
+
+<table class="table table-bordered table-striped">
+
+  <thead class = "thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Specjalizacja</th>
+    <th>Akcja</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of specializationList">
+    <td>{{item.id}}</td>
+    <td>{{item.generalInfo.content}}</td>
+    <td>
+      <button (click)="goToSpecializationPage(item)" class ="btn btn-success btn-sm me-2">Redagować</button>
+      <button (click)="deleteAllPages(item)" class ="btn btn-danger btn-sm">Usuńąć wszystkie strony</button>
+    </td>
+  </tr>
+  </tbody>
+
+</table>

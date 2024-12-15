@@ -3,6 +3,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {LanguageService} from "../../../services/language.service";
 import {LanguageDetails} from "../../../interfaces/language-details";
+import {SpecializationService} from "../../../services/specialization.service";
 
 @Component({
   selector: 'app-specialization-create',
@@ -22,11 +23,13 @@ export class SpecializationCreateComponent implements OnInit {
   selectedImage: File | null = null;
   imagePreview: string | null = null;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private languageService: LanguageService,
+    private specializationService: SpecializationService,
   ) {
     this.specializationForm = this.fb.group({
-      generalInfos: this.fb.array([this.createGeneralInfo()]),
+      specializationNames: this.fb.array([this.createGeneralInfo()]),
       isHidden: [false]
     });
   }
@@ -42,31 +45,37 @@ export class SpecializationCreateComponent implements OnInit {
 
   }
 
-  get generalInfos(): FormArray<FormGroup> {
-    return this.specializationForm.get('generalInfos') as FormArray<FormGroup>;
+  get specializationNames(): FormArray<FormGroup> {
+    return this.specializationForm.get('specializationNames') as FormArray<FormGroup>;
   }
 
   createGeneralInfo(): FormGroup {
     return this.fb.group({
       languageId: [null, Validators.required],
-      content: ['', Validators.required]
+      content: ['', Validators.required],
+      code: ['odk']
     });
   }
 
   addGeneralInfo(): void {
-    this.generalInfos.push(this.createGeneralInfo());
+    this.specializationNames.push(this.createGeneralInfo());
   }
 
   removeGeneralInfo(index: number): void {
-    this.generalInfos.removeAt(index);
+    this.specializationNames.removeAt(index);
   }
 
   onSubmit(): void {
     if (this.specializationForm.valid && this.selectedImage) {
-      const payload = this.specializationForm.value;
-      console.log('Sending payload to backend:', payload);
+      console.log('Sending payload to backend:', this.specializationForm.value);
+      const formData = new FormData();
 
+      formData.append('image', this.selectedImage);
+      formData.append('body', new Blob([JSON.stringify(this.specializationForm.getRawValue())], { type: 'application/json' }));
 
+      this.specializationService.createSpecialization(formData).subscribe({
+
+      })
 
     }else if (!this.selectedImage) {
       alert("Please select a image");

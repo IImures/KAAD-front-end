@@ -59,7 +59,19 @@ export const routes: Routes = [
       {
         path: 'spec',
         loadComponent: () => import('./editorPages/specialization-edit/specialization-edit.component').then(m => m.SpecializationEditComponent),
-      }
+      },
+      {
+        path: 'specialization-page',
+        loadComponent: () => import('./editorPages/spec-page-edit/spec-page-edit.component').then(m => m.SpecPageEditComponent),
+      },
+      {
+        path: 'specialization-page/:id',
+        loadComponent: () => import('./editorPages/spec-page-edit/page-edit/page-edit.component').then(m => m.PageEditComponent),
+      },
+      {
+        path: 'team-member',
+        loadComponent: () => import('./editorPages/team-member-editor/team-member-editor.component').then(m => m.TeamMemberEditorComponent),
+      },
     ]
   },
   {

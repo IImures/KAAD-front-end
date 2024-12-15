@@ -1,6 +1,6 @@
 import {GeneralInfoDetails} from "./GeneralInfoDetails";
 
 export interface SpecializationPageDetails {
-  id: number;
+  id: string;
   generalInfo: GeneralInfoDetails;
 }

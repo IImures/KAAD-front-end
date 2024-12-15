@@ -1,0 +1,119 @@
+<h3>Dodaj nowego członku zespołu</h3>
+<form
+[formGroup]="memberFrom"
+>
+  <div *ngFor="let info of description.controls; let i = index" [formGroup]="description.at(i)" class="mb-3 w-50">
+    <h5>Opis {{ i + 1 }}</h5>
+
+    <strong>Wybór języka</strong>
+    <div class="form-group mb-2">
+      <label for="languageId-{{ i }}">Język</label>
+      <select
+        id="languageId-{{ i }}"
+        class="form-control"
+        formControlName="languageId"
+      >
+        <option value="null" selected disabled>Wybierz język</option>
+        <option *ngFor="let lang of languages" [value]="lang.id">{{ lang.language }}</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="content-{{ i }}">Opis członka zespołu</label>
+      <input
+        id="content-{{ i }}"
+        type="text"
+        class="form-control"
+        formControlName="content"
+        placeholder="Opis"
+      />
+    </div>
+
+    <button type="button" class="btn btn-danger" (click)="removeGeneralInfo(i)">
+      Remove
+    </button>
+    <hr />
+  </div>
+
+  <button type="button" class="btn btn-secondary mb-3" (click)="addGeneralInfo()">
+    Dodaj następny opis
+  </button>
+
+  <div class = "w-50">
+    <div class="form-group mb-2">
+      <label for="firstName">Imie</label>
+      <input
+        id="firstName"
+        type="text"
+        class="form-control"
+        formControlName="firstName"
+        placeholder="Vladyslav"
+      />
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="lastName">Nazwisko</label>
+      <input
+        id="lastName"
+        type="text"
+        class="form-control"
+        formControlName="lastName"
+        placeholder="Kalynchenko"
+      />
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="email">EMAIL</label>
+      <input
+        id="email"
+        type="text"
+        class="form-control"
+        formControlName="email"
+        placeholder="blabla@gmail.com"
+      />
+    </div>
+    <div class="form-group mb-2">
+      <label for="phone">Telefon</label>
+      <input
+        id="phone"
+        type="text"
+        class="form-control"
+        formControlName="phone"
+        placeholder="123123123"
+      />
+    </div>
+    <div class="form-group mb-2">
+      <label for="priority">Prioritet</label>
+      <input
+        id="priority"
+        type="text"
+        class="form-control"
+        formControlName="priority"
+        placeholder="0-100"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="image">Obrazek</label>
+      <input
+        id="image"
+        type="file"
+        class="form-control"
+        (change)="onImageSelected($event)"
+        accept="image/*"
+      />
+    </div>
+    <div *ngIf="imagePreview" class="form-group mb-3">
+      <label style="padding-right: 2rem">Przegląd</label>
+      <img [src]="imagePreview" alt="Image Preview" class="img-thumbnail" style="max-width: 200px;" />
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    (click)="onSubmit()"
+    [disabled]="(!selectedImage ||  memberFrom.invalid)">
+    Zapisz
+  </button>
+
+</form>

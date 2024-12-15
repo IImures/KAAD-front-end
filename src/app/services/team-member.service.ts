@@ -30,4 +30,7 @@ export class TeamMemberService {
     return this.http.get<TeamMember[]>(this.url, {params: params});
   }
 
+  createMember(formData: FormData) {
+    return this.http.post<TeamMember>(`${this.url}`, formData);
+  }
 }

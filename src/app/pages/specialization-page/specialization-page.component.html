@@ -5,7 +5,7 @@
 
     <header class="d-flex header-custom justify-content-center align-items-center mb-3 mb-sm-0">
       <h1>{{specTitle}}</h1>
-      <img class="specialization-icon" [src]="'http://localhost:8080/api/v1/specialization/' + id + '/photo'" alt="Specialization icon">
+      <img class="specialization-icon" [src]="environment.apiUrl+'/'+environment.apiVersion+'/specialization/'+id+'/photo'" alt="Specialization icon">
     </header>
     <section class ="article-body" [innerHTML]="specText">
 
@@ -14,21 +14,9 @@
 
   <img *ngIf="imageExists"
        class="side-photo"
-       [src]="'http://localhost:8080/api/v1/specialization/' + id + '/page/photo'"
+       [src]="environment.apiUrl+'/'+environment.apiVersion+'/specialization/'+id+'/page/photo'"
        (error)="onImageError()"
-       alt="Specialization Photo"></div>
+       alt="Specialization Photo">
+</div>
 
-<!--<p>-->
-<!--  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis, justo ac efficitur varius,-->
-<!--  ipsum turpis ultrices nisi, sed placerat urna nunc at erat. Sed vulputate interdum mi, non facilisis risus luctus in.-->
-<!--  Nulla id tincidunt purus. Phasellus non velit nulla. Donec tempor posuere purus, in ornare velit interdum at.-->
-<!--</p>-->
-<!--<p>-->
-<!--  Nam at orci sed nunc malesuada venenatis. Suspendisse potenti. Quisque at varius erat, et tincidunt augue.-->
-<!--  Fusce tincidunt eros et quam egestas, ut eleifend lectus condimentum. Suspendisse potenti. Duis mollis, nisl non pharetra faucibus,-->
-<!--  ligula urna tincidunt mi, a euismod ligula ligula in nisi.-->
-<!--</p>-->
-<!--<p>-->
-<!--  Integer nec turpis non nisi gravida tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.-->
-<!--  Cras ullamcorper fermentum nibh at tincidunt. Aliquam erat volutpat.-->
-<!--</p>-->
+

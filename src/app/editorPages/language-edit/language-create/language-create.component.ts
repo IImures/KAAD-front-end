@@ -59,11 +59,10 @@ export class LanguageCreateComponent implements OnInit{
     if (this.languageForm.valid && this.selectedImage) {
       const formData = new FormData();
       const languageRequest : LanguageRequest = this.languageForm.getRawValue();
-      console.log(languageRequest);
+
       formData.append('body',new Blob([JSON.stringify(languageRequest)], { type: 'application/json' }));
       formData.append('image', this.selectedImage);
 
-      console.log('Form submitted:', formData);
       this.languageService.createLanguage(formData)
         .subscribe({
           next: () => {

@@ -2,7 +2,7 @@
   <h3>Add New Specialization</h3>
 
   <form [formGroup]="specializationForm" (ngSubmit)="onSubmit()">
-    <div *ngFor="let info of generalInfos.controls; let i = index" [formGroup]="generalInfos.at(i)" class="mb-3">
+    <div *ngFor="let info of specializationNames.controls; let i = index" [formGroup]="specializationNames.at(i)" class="mb-3">
       <h5>Specialization Info {{ i + 1 }}</h5>
 
        Language Selection
@@ -64,7 +64,10 @@
       <label for="isHidden" class="form-check-label">Is Hidden</label>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="(!selectedImage ||  specializationForm.invalid)">
+    <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="(!selectedImage ||  specializationForm.invalid)">
       Save
     </button>
   </form>
