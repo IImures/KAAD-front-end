@@ -1,5 +1,6 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
+import {AuthResponse} from "../interfaces/AuthResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,26 @@ export class LocalStorageService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem(key);
     }
+  }
+
+  setTokens(tokens: AuthResponse): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    this.setItem('token', tokens.token);
+    this.setItem('refreshToken', tokens.refreshToken);
+  }
+
+  getToken() {
+    return this.getItem('token');
+  }
+
+  getRefreshToken() {
+    return this.getItem('refreshToken');
+  }
+
+  deleteTokens() {
+    this.removeItem('token');
+    this.removeItem('refreshToken');
   }
 }

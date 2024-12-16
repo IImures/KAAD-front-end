@@ -1,19 +1,36 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
+import {catchError, map, Observable, of} from "rxjs";
+import {AuthService} from "./auth.service";
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleGuardService {
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const expectedRoles = route.data['roles'] as string[];
-    // const hasRole = expectedRoles.some(role => this.jwtParser.hasRole(role));
-    //
-    // if (!hasRole) {
-    //   this.router.navigate(['/login']);
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private localStorage: LocalStorageService,
+  ) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return true;
+    // const token = this.localStorage.getToken();
+    // if(!token) {
+    //   this.router.navigate(['login']);
     //   return false;
     // }
-    return true;
+    //
+    // return this.authService.verify(token).pipe(
+    //   map(() => true),
+    //   catchError(() => {
+    //     console.log('Routing to login')
+    //     this.router.navigate(['login']);
+    //     return of(false)
+    //   })
+    // );
   }
+
 }

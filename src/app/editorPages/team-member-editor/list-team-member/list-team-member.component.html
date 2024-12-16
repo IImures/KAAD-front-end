@@ -1,1 +1,27 @@
-<p>list-team-member works!</p>
+<select (change)="selectLanguage($event)" class="form-select mb-4">
+  <option selected disabled>Docelowy język</option>
+  <option *ngFor="let language of languages" [value]="language.id">{{language.language}}</option>
+</select>
+
+<table *ngIf="selectedLanguage" class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Photo</th>
+    <th>Imie</th>
+    <th>Nazwisko</th>
+    <th>Opis</th>
+    <th>Email</th>
+    <th>Telefon</th>
+    <th>Priority</th>
+    <th>Akcje</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of memberList">
+
+  </tr>
+  </tbody>
+</table>
+
+
