@@ -19,7 +19,44 @@
   </thead>
   <tbody>
   <tr *ngFor="let item of memberList">
-
+    <td>{{item.id}}</td>
+    <td>
+      <img *ngIf="editedMemberId !== item.id" ngSrc="{{environment.apiUrl+'/'+environment.apiVersion+'/team-member/'+item.id+'/photo'}}" alt="Team Member Photo" style="width: 50px; height: 50px" class="mb-3" width="128" height="128">
+      <div *ngIf="editedMemberId === item.id">
+        <input type="file" (change)="onImageSelected($event)" accept="image/*">
+        <img *ngIf="previewImage" [src]="previewImage" alt="Preview" style="width: 50px; height: 50px;">
+      </div>
+    </td>
+    <td>
+      <span *ngIf="editedMemberId !== item.id">{{item.firstName}}</span>
+      <input *ngIf="editedMemberId === item.id" [(ngModel)]="editedMember.firstName">
+    </td>
+    <td>
+      <span *ngIf="editedMemberId !== item.id">{{item.lastName}}</span>
+      <input *ngIf="editedMemberId === item.id" [(ngModel)]="editedMember.lastName">
+    </td>
+    <td>
+      <span *ngIf="editedMemberId !== item.id">{{item.description.content}}</span>
+      <input *ngIf="editedMemberId === item.id" [(ngModel)]="editedMember.description[0].content">
+    </td>
+    <td>
+      <span *ngIf="editedMemberId !== item.id">{{item.email}}</span>
+      <input *ngIf="editedMemberId === item.id" [(ngModel)]="editedMember.email">
+    </td>
+    <td>
+      <span *ngIf="editedMemberId !== item.id">{{item.phone}}</span>
+      <input *ngIf="editedMemberId === item.id" [(ngModel)]="editedMember.phone">
+    </td>
+    <td>
+      <span *ngIf="editedMemberId !== item.id">{{item.priority}}</span>
+      <input *ngIf="editedMemberId === item.id" [(ngModel)]="editedMember.priority">
+    </td>
+    <td>
+      <button *ngIf="editedMemberId !== item.id" (click)="editItem(item)"  class= "btn btn-warning">Redaguj</button>
+      <button *ngIf="editedMemberId !== item.id" (click)="deleteItem(item)" class = "btn btn-danger">Usuń</button>
+      <button *ngIf="editedMemberId === item.id" (click)="updateItem()" class= "btn btn-danger">Zapisz</button>
+      <button *ngIf="editedMemberId === item.id" (click)="cancelUpdateItem()" class= "btn btn-warning">Cofnij</button>
+    </td>
   </tr>
   </tbody>
 </table>

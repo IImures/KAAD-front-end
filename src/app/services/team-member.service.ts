@@ -25,12 +25,24 @@ export class TeamMemberService {
     );
   }
 
-  getTeamMembers() {
-    let params = new HttpParams().set('lang', this.lang);
+  getTeamMembers(lang : string | null = null) {
+
+    let params = new HttpParams();
+    if(lang){params = params.set('lang', lang);}
+    else{params = params.set('lang', this.lang);}
+
     return this.http.get<TeamMember[]>(this.url, {params: params});
   }
 
   createMember(formData: FormData) {
     return this.http.post<TeamMember>(`${this.url}`, formData);
+  }
+
+  updateMember(id: string, formData: FormData) {
+    return this.http.put<TeamMember>(`${this.url}/${id}`, formData)
+  }
+
+  deleteMember(id: string) {
+    return this.http.delete<TeamMember>(`${this.url}/${id}`);
   }
 }
