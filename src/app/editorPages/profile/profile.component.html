@@ -1,0 +1,22 @@
+<div class="card">
+<div class="card-header text-center">
+  <h2>User Profile</h2>
+</div>
+<div class="card-body">
+  <div class="text-center mb-4">
+    <img
+      [src]="user.blog_image || 'https://via.placeholder.com/150'"
+      alt="Profile Image"
+      class="rounded-circle"
+      style="width: 150px; height: 150px; object-fit: cover;"
+    />
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>ID:</strong> {{ user.id }}</li>
+    <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name }}</li>
+    <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+    <li class="list-group-item"><strong>Password:</strong> {{ user.password }}</li>
+  </ul>
+</div>
+</div>

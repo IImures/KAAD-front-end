@@ -72,6 +72,10 @@ export const routes: Routes = [
         path: 'team-member',
         loadComponent: () => import('./editorPages/team-member-editor/team-member-editor.component').then(m => m.TeamMemberEditorComponent),
       },
+      {
+        path: 'profile',
+        loadComponent: () => import('./editorPages/profile/profile.component').then(m => m.ProfileComponent),
+      },
     ]
   },
   {
