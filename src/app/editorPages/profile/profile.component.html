@@ -5,18 +5,102 @@
 <div class="card-body">
   <div class="text-center mb-4">
     <img
-      [src]="user.blog_image || 'https://via.placeholder.com/150'"
+      *ngIf="imageSrc && !imagePreview"
+      [src]="imageSrc"
       alt="Profile Image"
       class="rounded-circle"
       style="width: 150px; height: 150px; object-fit: cover;"
     />
+    <img
+      *ngIf="!imageSrc && !imagePreview"
+      src="https://via.placeholder.com/150"
+      alt="Profile Image"
+      class="rounded-circle"
+      style="width: 150px; height: 150px; object-fit: cover;"
+    />
+    <img
+      *ngIf="imagePreview"
+      [src]="imagePreview"
+      alt="Profile Image"
+      class="rounded-circle"
+      style="width: 150px; height: 150px; object-fit: cover;"
+    />
+    <div class="mt-3">
+      <input
+        type="file"
+        (change)="onImageSelected($event)"
+        class="form-control"
+        accept="image/*"
+      />
+    </div>
   </div>
   <ul class="list-group">
-    <li class="list-group-item"><strong>ID:</strong> {{ user.id }}</li>
-    <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name }}</li>
-    <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
-    <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
-    <li class="list-group-item"><strong>Password:</strong> {{ user.password }}</li>
+
+
+    <li class="list-group-item">
+      <strong>First Name:</strong>
+      <input
+        type="text"
+        [(ngModel)]="user.firstName"
+        class="form-control"
+        placeholder="Enter First Name"
+      />
+    </li>
+    <li class="list-group-item">
+      <strong>Last Name:</strong>
+      <input
+        type="text"
+        [(ngModel)]="user.lastName"
+        class="form-control"
+        placeholder="Enter Last Name"
+      />
+    </li>
+    <li class="list-group-item">
+      <strong>Email:</strong>
+      <input
+        type="email"
+        [(ngModel)]="user.email"
+        class="form-control"
+        placeholder="Enter Email"
+      />
+    </li>
+
+
+    <li class="list-group-item">
+      <strong>Password:</strong>
+      <span *ngIf="!isEditingPassword">********</span>
+      <input
+        *ngIf="isEditingPassword"
+        type="password"
+        [(ngModel)]="newPassword"
+        placeholder="Enter new password"
+        class="form-control"
+      />
+      <div class="mt-3">
+        <button
+          class="btn btn-primary m-1"
+          *ngIf="!isEditingPassword"
+          (click)="togglePasswordEdit()"
+        >
+          Change Password
+        </button>
+        <button
+          class="btn btn-success m-1"
+          *ngIf="isEditingPassword"
+          (click)="saveNewPassword()"
+        >
+          Save
+        </button>
+        <button
+          class="btn btn-secondary m-1"
+          *ngIf="isEditingPassword"
+          (click)="cancelPasswordEdit()"
+        >
+          Cancel
+        </button>
+      </div>
+    </li>
   </ul>
+  <button class="btn btn-success mt-3" (click)="saveProfile()">Save Profile</button>
 </div>
 </div>

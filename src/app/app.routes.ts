@@ -76,6 +76,10 @@ export const routes: Routes = [
         path: 'profile',
         loadComponent: () => import('./editorPages/profile/profile.component').then(m => m.ProfileComponent),
       },
+      {
+        path: 'post',
+        loadComponent: () => import('./editorPages/post-edit/post-edit.component').then(m => m.PostEditComponent),
+      },
     ]
   },
   {

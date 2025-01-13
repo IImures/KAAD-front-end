@@ -1,0 +1,16 @@
+<div class = "p-2 ">
+  <h2>Napisz nowy post</h2>
+  <div class="editor-container editor-container_classic-editor" #editorContainerElement>
+    <div class="editor-container__editor">
+      <div #editorElement>
+        <ckeditor
+          [editor]="editor"
+          [config]="config"
+          [(ngModel)]="post.content"
+          *ngIf="isLayoutReady" />
+      </div>
+    </div>
+  </div>
+  <button (click)="createPost()" class = "btn btn-primary m-1">Zapisz</button>
+  <hr>
+</div>

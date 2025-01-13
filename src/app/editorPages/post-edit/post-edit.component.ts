@@ -1,36 +1,39 @@
 import {Component, OnInit} from '@angular/core';
-import {PostComponent} from "./post/post.component";
 import {PostDetails} from "../../interfaces/post-details";
-import {NgForOf} from "@angular/common";
 import {BlogService} from "../../services/blog.service";
+import {NgForOf} from "@angular/common";
+import {PostComponent} from "./post/post.component";
+import {PostCreateComponent} from "./post-create/post-create.component";
 
 @Component({
-  selector: 'app-blog',
+  selector: 'app-post-edit',
   standalone: true,
   imports: [
+    NgForOf,
     PostComponent,
-    NgForOf
+    PostCreateComponent
   ],
-  templateUrl: './blog.component.html',
-  styleUrl: './blog.component.scss'
+  templateUrl: './post-edit.component.html',
+  styleUrl: './post-edit.component.scss'
 })
-export class BlogComponent implements OnInit {
+export class PostEditComponent implements OnInit {
+
   postsDetails: PostDetails[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
-  limit: number = 10;
+  limit: number = 1;
 
   constructor(
     private blogService: BlogService,
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPosts();
   }
 
   getPosts() {
-    this.blogService.getPosts(this.limit, this.currentPage - 1).subscribe(response => {
+    this.blogService.getPostsByAuthor(this.limit, this.currentPage - 1).subscribe(response => {
       this.postsDetails = response.content;
       this.totalPages = response.totalPages;
     });

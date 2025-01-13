@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LocalStorageService} from "../../services/local-storage.service";
+import {AuthService} from "../../services/auth.service";
+import {AuthResponse} from "../../interfaces/AuthResponse";
 
 
 @Component({
@@ -18,8 +20,9 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    // private authService: AuthService,
+    private authService: AuthService,
     private localStorage: LocalStorageService,
+    private router: Router,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,16 +31,16 @@ export class LoginComponent {
   }
 
   login() {
-    // const data = this.loginForm.value;
-    //
-    // this.localStorage.deleteTokens();
-    // this.authService.login(data.email, data.password).subscribe(
-    //   {
-    //     next: (data : AuthResponse) => {
-    //       this.localStorage.setTokens(data);
-    //       this.router.navigate(['/edit']);
-    //     }
-    //   }
-    // );
+    const data = this.loginForm.value;
+
+    this.localStorage.deleteTokens();
+    this.authService.login(data.email, data.password).subscribe(
+      {
+        next: (data : AuthResponse) => {
+          this.localStorage.setTokens(data);
+          this.router.navigate(['/edit']);
+        }
+      }
+    );
   }
 }

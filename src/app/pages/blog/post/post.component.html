@@ -11,8 +11,11 @@
         <span>{{processTime(post.createdAt)}}</span>
       </div>
 
-      <div [class.expanded]="!isPostHidden" [class.collapsed]="isPostHidden" class="blog-body">
-        <p [class.hidden-text]="isPostHidden">{{ post.content }}</p>
+      <div [class.expanded]="!isPostHidden"
+           [class.collapsed]="isPostHidden"
+           [class.hidden-text]="isPostHidden" class="blog-body"
+           [innerHTML]="post.content">
+<!--        <p [class.hidden-text]="isPostHidden" [innerHTML]="post.content"></p>-->
 <!--        <p *ngIf="isPostHidden" class="hidden-text">{{ getStartOfPost() }}...</p>-->
       </div>
 

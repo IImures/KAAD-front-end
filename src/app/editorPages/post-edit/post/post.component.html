@@ -1,0 +1,17 @@
+
+<div class = "p-2 ">
+  <div class="editor-container editor-container_classic-editor" #editorContainerElement>
+    <div class="editor-container__editor">
+      <div #editorElement>
+        <ckeditor
+          [editor]="editor"
+          [config]="config"
+          [(ngModel)]="post.content"
+          *ngIf="isLayoutReady" />
+      </div>
+    </div>
+  </div>
+  <button (click)="updatePost()" class = "btn btn-primary m-1">Zapisz</button>
+  <button (click)="deletePost()" class = "btn btn-danger m-1">Usuń</button>
+  <hr>
+</div>
