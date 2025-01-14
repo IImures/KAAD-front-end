@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {LanguageDetails} from "../interfaces/language-details";
 import {BehaviorSubject, Observable} from "rxjs";
 import {LocalStorageService} from "./local-storage.service";
+import {Meta} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,13 @@ export class LanguageService{
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService,
+    private meta: Meta
   ) {
     const savedLang = this.localStorage.getItem('lang') || 'pl';
     this.languageSubject = new BehaviorSubject(savedLang);
     this.language$ = this.languageSubject.asObservable();
     this.localStorage.setItem('lang', savedLang);
+    this.meta.updateTag({name: "Content-Language", content: savedLang});
   }
 
   getLanguages(){
@@ -32,6 +35,7 @@ export class LanguageService{
   changeLanguage(lang: LanguageDetails) {
     this.languageSubject.next(lang.code);
     this.localStorage.setItem('lang', lang.code);
+    this.meta.updateTag({name: "Content-Language", content: lang.code});
   }
 
   createLanguage(form: FormData) {

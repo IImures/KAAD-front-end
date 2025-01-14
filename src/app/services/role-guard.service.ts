@@ -16,21 +16,20 @@ export class RoleGuardService {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
-    // const token = this.localStorage.getToken();
-    // if(!token) {
-    //   this.router.navigate(['login']);
-    //   return false;
-    // }
-    //
-    // return this.authService.verify(token).pipe(
-    //   map(() => true),
-    //   catchError(() => {
-    //     console.log('Routing to login')
-    //     this.router.navigate(['login']);
-    //     return of(false)
-    //   })
-    // );
+    const token = this.localStorage.getToken();
+    if(!token) {
+      this.router.navigate(['login']);
+      return false;
+    }
+
+    return this.authService.verify(token).pipe(
+      map(() => true),
+      catchError(() => {
+        console.log('Routing to login')
+        this.router.navigate(['login']);
+        return of(false)
+      })
+    );
   }
 
 }

@@ -1,13 +1,13 @@
 <div class="container">
-  <h3>Add New Specialization</h3>
+  <h3>Dodaj specjalizacje</h3>
 
   <form [formGroup]="specializationForm" (ngSubmit)="onSubmit()">
     <div *ngFor="let info of specializationNames.controls; let i = index" [formGroup]="specializationNames.at(i)" class="mb-3">
-      <h5>Specialization Info {{ i + 1 }}</h5>
+      <h5>Nazwa specjalizacji {{ i + 1 }}</h5>
 
-       Language Selection
+       Wybór języka
       <div class="form-group mb-2">
-        <label for="languageId-{{ i }}">Language</label>
+        <label for="languageId-{{ i }}">Język</label>
         <select
           id="languageId-{{ i }}"
           class="form-control"
@@ -18,7 +18,7 @@
       </div>
 
       <div class="form-group mb-2">
-        <label for="content-{{ i }}">Specialization Name</label>
+        <label for="content-{{ i }}">Nazwa specjalizacji</label>
         <input
           id="content-{{ i }}"
           type="text"
@@ -29,13 +29,13 @@
       </div>
 
       <button type="button" class="btn btn-danger" (click)="removeGeneralInfo(i)">
-        Remove
+        Usuń
       </button>
       <hr />
     </div>
 
     <button type="button" class="btn btn-secondary mb-3" (click)="addGeneralInfo()">
-      Add Specialization Info
+      Dodaj inną nazwę
     </button>
 
     <div class="form-group mb-3">
@@ -61,14 +61,14 @@
         class="form-check-input"
         formControlName="isHidden"
       />
-      <label for="isHidden" class="form-check-label">Is Hidden</label>
+      <label for="isHidden" class="form-check-label">Schowana?</label>
     </div>
 
     <button
             type="submit"
             class="btn btn-primary"
             [disabled]="(!selectedImage ||  specializationForm.invalid)">
-      Save
+      Zapisz
     </button>
   </form>
 

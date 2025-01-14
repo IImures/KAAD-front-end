@@ -3,17 +3,15 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Language</th>
-      <th>Code</th>
-      <th>Default</th>
-      <th>Image</th>
-      <th>Actions</th>
+      <th>Język</th>
+      <th>Kod</th>
+      <th>Standardowy</th>
+      <th>Obrazek</th>
+      <th>Akcję</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let language of languages">
-      <td>{{ language.id }}</td>
       <td>
         <span *ngIf="editingLanguageId !== language.id">{{ language.language }}</span>
         <input *ngIf="editingLanguageId === language.id" [(ngModel)]="editedLanguage.language">
@@ -28,8 +26,8 @@
           <span *ngIf="!language.defaultLanguage">No</span>
         </span>
         <select *ngIf="editingLanguageId === language.id" [(ngModel)]="editedLanguage.defaultLanguage">
-          <option [ngValue]="true">Yes</option>
-          <option [ngValue]="false">No</option>
+          <option [ngValue]="true">Tak</option>
+          <option [ngValue]="false">Nie</option>
         </select>
       </td>
       <td>
@@ -51,22 +49,22 @@
         <button *ngIf="editingLanguageId !== language.id"
                 class="btn btn-primary btn-sm"
                 (click)="editLanguage(language.id, language)">
-          Edit
+          Redaguj
         </button>
         <button *ngIf="editingLanguageId !== language.id"
                 class="btn btn-danger btn-sm"
                 (click)="deleteLanguage(language.id)">
-          Delete
+          Usuń
         </button>
         <button *ngIf="editingLanguageId === language.id"
                 class="btn btn-success btn-sm"
                 (click)="confirmEditLanguage(language.id)">
-          Confirm
+          Potwierdź
         </button>
         <button *ngIf="editingLanguageId === language.id"
                 class="btn btn-secondary btn-sm"
                 (click)="cancelEditLanguage()">
-          Cancel
+          Wróć
         </button>
       </td>
     </tr>

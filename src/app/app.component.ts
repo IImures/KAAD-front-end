@@ -4,6 +4,7 @@ import {HeaderComponent} from "./pages/header/header.component";
 import {FooterComponent} from "./pages/footer/footer.component";
 import {isPlatformBrowser, NgIf} from "@angular/common";
 import {environment} from "../environments/environment";
+import {Meta} from "@angular/platform-browser";
 
 
 @Component({
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit{
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) platformId: Object
+    @Inject(PLATFORM_ID) platformId: Object,
+    private meta : Meta
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit{
         this.updateHeaderFooterVisibility(event.urlAfterRedirects);
       }
     });
+    this.meta.addTag({name: "og:url", content: `https://${environment.domain}/about`});
   }
 
   updateHeaderFooterVisibility(url: string) {

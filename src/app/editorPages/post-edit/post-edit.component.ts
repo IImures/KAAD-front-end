@@ -21,7 +21,7 @@ export class PostEditComponent implements OnInit {
   postsDetails: PostDetails[] = [];
   currentPage: number = 1;
   totalPages: number = 1;
-  limit: number = 1;
+  limit: number = 10;
 
   constructor(
     private blogService: BlogService,

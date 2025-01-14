@@ -7,16 +7,14 @@
 <table *ngIf="selectedLanguage" class="table table-bordered table-striped">
   <thead class="thead-dark">
   <tr>
-    <th>ID</th>
     <th>Photo</th>
-    <th>Content</th>
-    <th>Is Hidden</th>
-    <th>Actions</th>
+    <th>Nazwa</th>
+    <th>Schowana</th>
+    <th>Akcję</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let item of specializationList">
-    <td>{{ item.id }}</td>
     <td>
       <img *ngIf="editedSpecializationId !== item.id" ngSrc="{{environment.apiUrl+'/'+environment.apiVersion+'/specialization/'+item.id+'/photo'}}" alt="Specialization Icon" style="width: 50px; height: 50px" class="mb-3" width="128" height="128">
       <div *ngIf="editedSpecializationId === item.id">
@@ -29,22 +27,22 @@
       <input *ngIf="editedSpecializationId === item.id" [(ngModel)]="editedSpecialization.specializationNames[0].content">
     </td>
     <td>
-      <span *ngIf="editedSpecializationId !== item.id">{{item.isHidden ? 'Hidden' : 'Not hidden'}}</span>
+      <span *ngIf="editedSpecializationId !== item.id">{{item.isHidden ? 'Schowana' : 'Nie schowana'}}</span>
 
       <select *ngIf="editedSpecializationId === item.id" [(ngModel)]="editedSpecialization.isHidden" >
-        <option [ngValue]="true">Yes</option>
-        <option [ngValue]="false">No</option>
+        <option [ngValue]="true">Tak</option>
+        <option [ngValue]="false">Nie</option>
       </select>
     </td>
     <td>
-      <button *ngIf="editedSpecializationId !== item.id" class="btn btn-sm btn-warning" (click)="editItem(item)">Edit</button>
-      <button *ngIf="editedSpecializationId !== item.id" class="btn btn-sm btn-danger" (click)="deleteItem(item)">Delete</button>
+      <button *ngIf="editedSpecializationId !== item.id" class="btn btn-sm btn-warning" (click)="editItem(item)">Redaguj</button>
+      <button *ngIf="editedSpecializationId !== item.id" class="btn btn-sm btn-danger" (click)="deleteItem(item)">Usuń</button>
       <button *ngIf="editedSpecializationId === item.id"
               class="btn btn-success btn-sm"
-              (click)="confirmEditSpec(item.id)"> Confirm </button>
+              (click)="confirmEditSpec(item.id)"> Potwierdź </button>
       <button *ngIf="editedSpecializationId === item.id"
               class="btn btn-secondary btn-sm"
-              (click)="cancelEditSpec()"> Cancel </button>
+              (click)="cancelEditSpec()"> Wróć </button>
     </td>
   </tr>
   </tbody>
