@@ -1,10 +1,11 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {ApplicationConfig, ErrorHandler, provideZoneChangeDetection} from '@angular/core';
 import {provideRouter, withInMemoryScrolling} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
-import {setAuthHeader} from "./interceptors/AuthInterceptor";
+import {retryInterceptor, setAuthHeader} from "./interceptors/AuthInterceptor";
+import {ErrorInterceptor} from "./interceptors/ErrorInterceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,8 +16,9 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(
       withFetch(),
-      withInterceptors([setAuthHeader])
+      withInterceptors([setAuthHeader, retryInterceptor])
      ),
+    { provide: ErrorHandler, useClass: ErrorInterceptor },
     provideClientHydration()
   ]
 };
