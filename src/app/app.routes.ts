@@ -5,12 +5,15 @@ import {ContactComponent} from "./pages/contact/contact.component";
 import {BlogComponent} from "./pages/blog/blog.component";
 import {SpecializationPageComponent} from "./pages/specialization-page/specialization-page.component";
 import {RoleGuardService} from "./services/role-guard.service";
+import {ContactResolver} from "./pages/contact/contact.reslover";
 
 export const routes: Routes = [
 
   {
     path: '',
     redirectTo: 'about',
+    // component: AppComponent,
+    // resolve:{headerInfo: HeaderService},
     pathMatch: 'full',
   },
   {
@@ -31,7 +34,8 @@ export const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent,
-    title: 'Kontakt'
+    title: 'Kontakt',
+    resolve:{contactPage: ContactResolver}
   },
   {
     path: 'blog',

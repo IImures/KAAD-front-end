@@ -18,6 +18,7 @@ import {
 import {ContactDetails} from "../../interfaces/ContactDetails";
 import {MessageDialogComponent} from "../../components/message-dialog/message-dialog.component";
 import {SpecializationDetails} from "../../interfaces/specialization-details";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-contact',
@@ -56,6 +57,7 @@ export class ContactComponent implements OnInit{
   contactForm: FormGroup;
 
   constructor(
+    private route: ActivatedRoute,
     private languageService: LanguageService,
     private generalInfoService: GeneralInfoService,
     private specializationService: SpecializationService,
@@ -75,7 +77,6 @@ export class ContactComponent implements OnInit{
 
     if (this.contactForm.valid) {
       const formData : ContactDetails = this.contactForm.value;
-      console.log(formData);
       this.contactService.sendContact(formData);
       this.contactService.sendContact(formData).subscribe({
         next: () => {
@@ -89,7 +90,6 @@ export class ContactComponent implements OnInit{
       })
 
     }else{
-      console.log(this.contactForm.value);
       this.dialogMessage = this.dialogErrorMessage;
       this.messageDialog.showDialog();
     }
@@ -106,11 +106,44 @@ export class ContactComponent implements OnInit{
   };
 
   ngOnInit() {
+    console.log(3)
     this.updateInfo();
     this.getInfo();
   }
 
   getInfo() {
+    this.route.data.subscribe((data: any) => {
+      const resolved = data.contactPage;
+
+      this.title = resolved.generalInfo.contactTitle.content;
+      this.description = resolved.generalInfo.contactDescription.content;
+      this.fullNameLabel = resolved.generalInfo.fullNameLabel.content;
+      this.emailLabel = resolved.generalInfo.emailLabel.content;
+      this.phoneLabel = resolved.generalInfo.phoneLabel.content;
+      this.serviceTypeLabel = resolved.generalInfo.serviceTypeLabel.content;
+      this.communicationMethodLabel = resolved.generalInfo.communicationMethodLabel.content;
+      this.sendFormLabel = resolved.generalInfo.sendFormLabel.content;
+      this.dialogErrorMessage = resolved.generalInfo.errorFormLabel.content;
+      this.dialogSuccessMessage = resolved.generalInfo.successFormLabel.content;
+      this.serverErrorMessage = resolved.generalInfo.serverErrorFormLabel.content;
+
+      // Set services and contact types from the resolved data
+      this.services = resolved.services;
+      this.contactTypes = resolved.contactTypes;
+    });
+  }
+
+  private updateInfo(){
+    this.languageService.language$.pipe(
+      debounceTime(300)
+    ).subscribe(
+      ()=> {
+        this.refreshInfo();
+      }
+    )
+  }
+
+  private refreshInfo(){
     const requests = [
       this.generalInfoService.getInfo('contactTitle'),
       this.generalInfoService.getInfo('contactDescription'),
@@ -164,16 +197,6 @@ export class ContactComponent implements OnInit{
       this.dialogSuccessMessage = successFormLabel.content;
       this.serverErrorMessage = serverErrorFormLabel.content;
     });
-  }
-
-  private updateInfo(){
-    this.languageService.language$.pipe(
-      debounceTime(300)
-    ).subscribe(
-      ()=> {
-        this.getInfo();
-      }
-    )
   }
 
 }

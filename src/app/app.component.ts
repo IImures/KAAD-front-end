@@ -18,8 +18,8 @@ export class AppComponent implements OnInit{
   title = 'Kancelaria Adwokacka';
   isBrowser: boolean = false;
 
-  showHeader = false;
-  showFooter = false;
+  showHeader = true;
+  showFooter = true;
 
   constructor(
     private router: Router,
@@ -43,10 +43,6 @@ export class AppComponent implements OnInit{
   updateHeaderFooterVisibility(url: string) {
     const hiddenRoutesForHeader = environment.hideHeaderOn
     this.showHeader = !hiddenRoutesForHeader.some(route => url.includes(route));
-
-    if(this.showHeader) {
-
-    }
 
     const hiddenRoutesForFooter = environment.hideFooterOn
     this.showFooter = !hiddenRoutesForFooter.some(route => url.includes(route));

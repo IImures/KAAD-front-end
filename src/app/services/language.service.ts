@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {LanguageDetails} from "../interfaces/language-details";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, skip} from "rxjs";
 import {LocalStorageService} from "./local-storage.service";
 import {Meta} from "@angular/platform-browser";
 
@@ -23,7 +23,7 @@ export class LanguageService{
   ) {
     const savedLang = this.localStorage.getItem('lang') || 'pl';
     this.languageSubject = new BehaviorSubject(savedLang);
-    this.language$ = this.languageSubject.asObservable();
+    this.language$ = this.languageSubject.asObservable().pipe(skip(1));
     this.localStorage.setItem('lang', savedLang);
     this.meta.updateTag({name: "Content-Language", content: savedLang});
   }
@@ -33,9 +33,11 @@ export class LanguageService{
   }
 
   changeLanguage(lang: LanguageDetails) {
-    this.languageSubject.next(lang.code);
-    this.localStorage.setItem('lang', lang.code);
-    this.meta.updateTag({name: "Content-Language", content: lang.code});
+    if (this.languageSubject.value !== lang.code) {
+      this.languageSubject.next(lang.code);
+      this.localStorage.setItem('lang', lang.code);
+      this.meta.updateTag({ name: 'Content-Language', content: lang.code });
+    }
   }
 
   createLanguage(form: FormData) {

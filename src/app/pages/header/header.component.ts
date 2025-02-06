@@ -8,6 +8,7 @@ import {LanguageService} from "../../services/language.service";
 import {SpecializationService} from "../../services/specialization.service";
 import {HeaderLinks} from "../../interfaces/HeaderLinks";
 import {debounceTime, forkJoin} from "rxjs";
+import {HeaderService} from "./header.service";
 
 @Component({
   selector: 'app-header',
@@ -66,10 +67,11 @@ export class HeaderComponent implements OnInit{
   isListShown: boolean = false;
   isClickedInDropdown : boolean = false;
   activeDropdownIndex: number | null = null;
-  loaded = false;
+  loaded = true;
 
   constructor(
     private router: Router,
+    private headerService: HeaderService,
     public navListService: NavigationalListService,
     private generalInfoService: GeneralInfoService,
     private languageService: LanguageService,
@@ -78,8 +80,20 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit() {
+    const headerData = this.headerService.headerData
+    console.log("2")
+    this.updateLinkInfo(headerData.generalInfo.aboutLabel);
+    this.updateLinkInfo(headerData.generalInfo.specLabel);
+
+    const specLinkInfo = this.links.find(link => link.code ===  headerData.generalInfo.specLabel.code);
+    if (specLinkInfo) {
+      specLinkInfo.label = headerData.generalInfo.specLabel.content;
+      this.loadSpecializations(specLinkInfo);
+    }
+    this.updateLinkInfo(headerData.generalInfo.blogLabel);
+    this.updateLinkInfo(headerData.generalInfo.contactLabel);
+
     this.updateInfo();
-    //this.getInfo();
   }
 
   private updateInfo(){
@@ -87,12 +101,13 @@ export class HeaderComponent implements OnInit{
       debounceTime(300)
     ).subscribe(
       ()=> {
-        this.getInfo();
+        console.log(5)
+        this.refreshInfo();
       }
     )
   }
 
-  getInfo() {
+  refreshInfo() {
     const requests = [
       this.generalInfoService.getInfo('aboutLabel'),
       this.generalInfoService.getInfo('specLabel'),

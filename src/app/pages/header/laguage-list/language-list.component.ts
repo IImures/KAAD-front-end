@@ -32,7 +32,6 @@ export class LanguageListComponent implements OnInit {
   }
 
   changeLanguage(lang: LanguageDetails) {
-    console.log(lang);
     this.languageService.changeLanguage(lang);
   }
 
