@@ -31,13 +31,10 @@ export class ContactResolver implements Resolve<ContactPageDetails> {
       serverErrorFormLabel: this.generalInfoService.getInfo('serverErrorFormLabel')
     });
 
-    const services$ = this.specializationService.getSpecializations(true);
-    const contactTypes$ = this.contactService.getContactTypes();
-
     return forkJoin({
       generalInfo: generalInfo$,
-      services: services$,
-      contactTypes: contactTypes$
+      services: this.specializationService.getSpecializations(true),
+      contactTypes: this.contactService.getContactTypes()
     });
   }
 }

@@ -6,20 +6,20 @@ import {BlogComponent} from "./pages/blog/blog.component";
 import {SpecializationPageComponent} from "./pages/specialization-page/specialization-page.component";
 import {RoleGuardService} from "./services/role-guard.service";
 import {ContactResolver} from "./pages/contact/contact.reslover";
+import {AboutUsResolver} from "./pages/about-us/about-us.resolver";
 
 export const routes: Routes = [
 
   {
     path: '',
     redirectTo: 'about',
-    // component: AppComponent,
-    // resolve:{headerInfo: HeaderService},
     pathMatch: 'full',
   },
   {
     path: 'about',
     component: AboutUsComponent,
-    title: 'O nas'
+    title: 'O nas',
+    resolve:{aboutUsPage: AboutUsResolver}
   },
   {
     path: 'specializations',

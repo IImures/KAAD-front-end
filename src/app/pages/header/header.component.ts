@@ -81,7 +81,6 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit() {
     const headerData = this.headerService.headerData
-    console.log("2")
     this.updateLinkInfo(headerData.generalInfo.aboutLabel);
     this.updateLinkInfo(headerData.generalInfo.specLabel);
 
@@ -101,7 +100,6 @@ export class HeaderComponent implements OnInit{
       debounceTime(300)
     ).subscribe(
       ()=> {
-        console.log(5)
         this.refreshInfo();
       }
     )

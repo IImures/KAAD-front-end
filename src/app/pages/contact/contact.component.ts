@@ -106,7 +106,6 @@ export class ContactComponent implements OnInit{
   };
 
   ngOnInit() {
-    console.log(3)
     this.updateInfo();
     this.getInfo();
   }
@@ -127,7 +126,6 @@ export class ContactComponent implements OnInit{
       this.dialogSuccessMessage = resolved.generalInfo.successFormLabel.content;
       this.serverErrorMessage = resolved.generalInfo.serverErrorFormLabel.content;
 
-      // Set services and contact types from the resolved data
       this.services = resolved.services;
       this.contactTypes = resolved.contactTypes;
     });

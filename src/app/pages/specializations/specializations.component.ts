@@ -6,7 +6,7 @@ import {SpecializationDetails} from "../../interfaces/specialization-details";
 import {SpecializationService} from "../../services/specialization.service";
 import {LanguageService} from "../../services/language.service";
 import {GeneralInfoService} from "../../services/general-info.service";
-import {debounceTime, forkJoin} from "rxjs";
+import {debounceTime, forkJoin, skip} from "rxjs";
 import {GeneralInfoDetails} from "../../interfaces/GeneralInfoDetails";
 
 @Component({
@@ -41,6 +41,7 @@ export class SpecializationsComponent implements OnInit {
 
   private updateInfo(){
     this.languageService.language$.pipe(
+      skip(1),
       debounceTime(300)
     ).subscribe(
       ()=> {

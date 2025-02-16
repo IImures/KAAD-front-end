@@ -20,5 +20,9 @@ export class OurTeamComponent {
   @Input() title: string ='';
   @Input() teamMembers: TeamMember[] =[];
 
+  constructor(
+  ) {
+  }
+
   protected readonly environment = environment;
 }

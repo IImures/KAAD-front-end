@@ -8,6 +8,8 @@ import {LanguageService} from "../../services/language.service";
 import {TeamMemberService} from "../../services/team-member.service";
 import {NgIf} from "@angular/common";
 import {debounceTime, forkJoin} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {AboutUsPageDetails} from "../../interfaces/about-us-page-details";
 
 @Component({
   selector: 'app-about-us',
@@ -30,18 +32,38 @@ export class AboutUsComponent implements OnInit {
     private generalInfoService: GeneralInfoService,
     private teamMemberService: TeamMemberService,
     private languageService: LanguageService,
+    private route: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
     this.updateInfo();
-
     this.getInfo();
 
   }
 
   private getInfo() {
 
+    this.route.data.subscribe((data: any) => {
+      const resolved : AboutUsPageDetails = data.aboutUsPage;
+      this.aboutUs = resolved.aboutUs;
+      this.ourTeamTitle = data.aboutUsPage.ourTeamTitle.content;
+      this.teamMembers = data.aboutUsPage.teamMembers;
+
+    });
+  }
+
+  private updateInfo(){
+    this.languageService.language$.pipe(
+      debounceTime(300)
+    ).subscribe(
+      ()=> {
+        this.refreshInfo();
+      }
+    );
+  }
+
+  private refreshInfo(){
     this.teamMemberService.getTeamMembers()
       .subscribe(info => {
         this.teamMembers = info;
@@ -62,16 +84,6 @@ export class AboutUsComponent implements OnInit {
           console.error(error);
         }
       })
-  }
-
-  private updateInfo(){
-    this.languageService.language$.pipe(
-      debounceTime(300)
-    ).subscribe(
-      ()=> {
-        this.getInfo();
-      }
-    );
   }
 
 }

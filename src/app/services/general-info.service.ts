@@ -26,7 +26,7 @@ export class GeneralInfoService {
       }
     );
   }
-  @Cacheable()
+
   getInfo(code: string) {
     let params = new HttpParams().set('lang', this.lang);
     return this.http.get<GeneralInfoDetails>(`${this.url}/${code}`,

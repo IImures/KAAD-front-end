@@ -23,9 +23,9 @@ export class LanguageService{
   ) {
     const savedLang = this.localStorage.getItem('lang') || 'pl';
     this.languageSubject = new BehaviorSubject(savedLang);
-    this.language$ = this.languageSubject.asObservable().pipe(skip(1));
+    this.language$ = this.languageSubject.asObservable().pipe(skip(0));
     this.localStorage.setItem('lang', savedLang);
-    this.meta.updateTag({name: "Content-Language", content: savedLang});
+    this.meta.updateTag({name: "Content-Language", content: this.languageSubject.value});
   }
 
   getLanguages(){

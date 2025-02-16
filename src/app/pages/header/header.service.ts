@@ -32,7 +32,6 @@ export class HeaderService {
       specializations: specialization$
     }).pipe(
       map(response =>{
-        console.log("1");
         this.headerData = response;
         return this.headerData;
       }),
