@@ -7,7 +7,7 @@ import {GeneralInfoService} from "../../services/general-info.service";
 import {LanguageService} from "../../services/language.service";
 import {SpecializationService} from "../../services/specialization.service";
 import {HeaderLinks} from "../../interfaces/HeaderLinks";
-import {debounceTime, forkJoin} from "rxjs";
+import {debounceTime, forkJoin, skip} from "rxjs";
 import {HeaderService} from "./header.service";
 
 @Component({
@@ -97,6 +97,7 @@ export class HeaderComponent implements OnInit{
 
   private updateInfo(){
     this.languageService.language$.pipe(
+      skip(1),
       debounceTime(300)
     ).subscribe(
       ()=> {
@@ -151,7 +152,6 @@ export class HeaderComponent implements OnInit{
   }
 
   openSpecLink(specId: string, index: number) {
-    console.log("Opening: ", specId)
     this.isListShown = false;
     this.activeDropdownIndex = null;
     this.isClickedInDropdown = true;

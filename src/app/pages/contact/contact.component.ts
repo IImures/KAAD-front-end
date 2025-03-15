@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, makeStateKey, OnDestroy, OnInit, PLATFORM_ID, TransferState, ViewChild} from '@angular/core';
 import {LanguageService} from "../../services/language.service";
 import {GeneralInfoService} from "../../services/general-info.service";
-import {debounceTime, forkJoin} from "rxjs";
+import {debounceTime, forkJoin, Subscription} from "rxjs";
 import {SpecializationService} from "../../services/specialization.service";
-import {NgForOf} from "@angular/common";
+import {isPlatformServer, NgForOf} from "@angular/common";
 import {ContactServiceService} from "../../services/contact-service.service";
 import {ContactTypeDetails} from "../../interfaces/ContactTypeDetails";
 import {
@@ -19,6 +19,7 @@ import {ContactDetails} from "../../interfaces/ContactDetails";
 import {MessageDialogComponent} from "../../components/message-dialog/message-dialog.component";
 import {SpecializationDetails} from "../../interfaces/specialization-details";
 import {ActivatedRoute} from "@angular/router";
+import {ContactPageDetails} from "../../interfaces/ContactPageDetails";
 
 @Component({
   selector: 'app-contact',
@@ -33,7 +34,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './contact.component.scss'
 })
 
-export class ContactComponent implements OnInit{
+export class ContactComponent implements OnInit, OnDestroy{
 
   public title!: string;
   public description!: string;
@@ -55,6 +56,8 @@ export class ContactComponent implements OnInit{
   public dialogMessage!: string;
 
   contactForm: FormGroup;
+  platformId: Object;
+  private langSub!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -63,7 +66,11 @@ export class ContactComponent implements OnInit{
     private specializationService: SpecializationService,
     private contactService: ContactServiceService,
     private fb: FormBuilder,
+    @Inject(PLATFORM_ID) platformId: Object,
+    private transferState: TransferState
   ) {
+    this.platformId = platformId;
+
     this.contactForm = this.fb.nonNullable.group({
       fullName: ['', Validators.required],
       phoneNumber: ['', Validators.pattern('^\\+?[0-9]{7,15}$')],
@@ -71,6 +78,7 @@ export class ContactComponent implements OnInit{
       specializationId: ['', Validators.required],
       contactTypeId: ['', Validators.required]
     } , { validators: this.phoneOrEmailValidator });
+    this.updateInfo();
   }
 
   onSubmit() {
@@ -106,33 +114,47 @@ export class ContactComponent implements OnInit{
   };
 
   ngOnInit() {
-    this.updateInfo();
-    this.getInfo();
+    if(this.transferState.hasKey(makeStateKey('contactPage'))){
+      let data: ContactPageDetails = <ContactPageDetails>this.transferState.get(makeStateKey('contactPage'), null);
+      this.setData(data);
+    }else{
+      this.getInfo();
+    }
+  }
+
+  ngOnDestroy() {
+    this.langSub.unsubscribe();
   }
 
   getInfo() {
     this.route.data.subscribe((data: any) => {
-      const resolved = data.contactPage;
-
-      this.title = resolved.generalInfo.contactTitle.content;
-      this.description = resolved.generalInfo.contactDescription.content;
-      this.fullNameLabel = resolved.generalInfo.fullNameLabel.content;
-      this.emailLabel = resolved.generalInfo.emailLabel.content;
-      this.phoneLabel = resolved.generalInfo.phoneLabel.content;
-      this.serviceTypeLabel = resolved.generalInfo.serviceTypeLabel.content;
-      this.communicationMethodLabel = resolved.generalInfo.communicationMethodLabel.content;
-      this.sendFormLabel = resolved.generalInfo.sendFormLabel.content;
-      this.dialogErrorMessage = resolved.generalInfo.errorFormLabel.content;
-      this.dialogSuccessMessage = resolved.generalInfo.successFormLabel.content;
-      this.serverErrorMessage = resolved.generalInfo.serverErrorFormLabel.content;
-
-      this.services = resolved.services;
-      this.contactTypes = resolved.contactTypes;
+      const resolved : ContactPageDetails = data.contactPage;
+      if(isPlatformServer(this.platformId)){
+        this.transferState.set(makeStateKey('contactPage'), data.contactPage)
+      }
+      this.setData(resolved);
     });
   }
 
+  private setData(data: ContactPageDetails) {
+    this.title = data.generalInfo.contactTitle.content;
+    this.description = data.generalInfo.contactDescription.content;
+    this.fullNameLabel = data.generalInfo.fullNameLabel.content;
+    this.emailLabel = data.generalInfo.emailLabel.content;
+    this.phoneLabel = data.generalInfo.phoneLabel.content;
+    this.serviceTypeLabel = data.generalInfo.serviceTypeLabel.content;
+    this.communicationMethodLabel = data.generalInfo.communicationMethodLabel.content;
+    this.sendFormLabel = data.generalInfo.sendFormLabel.content;
+    this.dialogErrorMessage = data.generalInfo.errorFormLabel.content;
+    this.dialogSuccessMessage = data.generalInfo.successFormLabel.content;
+    this.serverErrorMessage = data.generalInfo.serverErrorFormLabel.content;
+
+    this.services = data.services;
+    this.contactTypes = data.contactTypes;
+  }
+
   private updateInfo(){
-    this.languageService.language$.pipe(
+    this.langSub = this.languageService.language$.pipe(
       debounceTime(300)
     ).subscribe(
       ()=> {
@@ -161,12 +183,6 @@ export class ContactComponent implements OnInit{
         this.services = responses;
       }
     );
-
-    this.contactService.getContactTypes().subscribe(
-      (responses) => {
-        this.contactTypes = responses;
-      }
-    )
 
     forkJoin(requests).subscribe((responses) => {
       const [

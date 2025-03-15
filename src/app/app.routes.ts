@@ -7,6 +7,7 @@ import {SpecializationPageComponent} from "./pages/specialization-page/specializ
 import {RoleGuardService} from "./services/role-guard.service";
 import {ContactResolver} from "./pages/contact/contact.reslover";
 import {AboutUsResolver} from "./pages/about-us/about-us.resolver";
+import {SpecsResolver} from "./pages/specializations/specs.resolver";
 
 export const routes: Routes = [
 
@@ -19,12 +20,13 @@ export const routes: Routes = [
     path: 'about',
     component: AboutUsComponent,
     title: 'O nas',
-    resolve:{aboutUsPage: AboutUsResolver}
+     resolve:{aboutUsPage: AboutUsResolver}
   },
   {
     path: 'specializations',
     component: SpecializationsComponent,
     title: 'Specjalizacje',
+    resolve:{specializationsPage: SpecsResolver}
   },
   {
     path: 'specialization/:id',

@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, makeStateKey, OnInit, PLATFORM_ID, TransferState,} from '@angular/core';
 import {CardComponent} from "./card/card.component";
-import {NgForOf} from "@angular/common";
+import {isPlatformServer, NgForOf} from "@angular/common";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {SpecializationDetails} from "../../interfaces/specialization-details";
 import {SpecializationService} from "../../services/specialization.service";
 import {LanguageService} from "../../services/language.service";
 import {GeneralInfoService} from "../../services/general-info.service";
-import {debounceTime, forkJoin, skip} from "rxjs";
-import {GeneralInfoDetails} from "../../interfaces/GeneralInfoDetails";
+import {debounceTime, forkJoin} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-specializations',
@@ -26,57 +26,72 @@ export class SpecializationsComponent implements OnInit {
   public specializations: SpecializationDetails[] = []
 
   public contactUs! : string;
+  platformId: Object;
+
 
   constructor(
+    private route: ActivatedRoute,
     private generalInfoService: GeneralInfoService,
     private specializationService: SpecializationService,
     private languageService: LanguageService,
+    @Inject(PLATFORM_ID) platformId: Object,
+    private transferState: TransferState
   ) {
+    this.platformId = platformId;
   }
 
   ngOnInit(): void {
+
+    if(this.transferState.hasKey(makeStateKey('specsPage'))){
+      let data : any = this.transferState.get(makeStateKey('specsPage'), null);
+      this.title = data.specTitle.content;
+      this.contactUs = data.contactBanner.content;
+      this.specializations = data.specs;
+    }else{
+      this.getInfo();
+    }
     this.updateInfo();
-    this.getInfo();
   }
 
   private updateInfo(){
     this.languageService.language$.pipe(
-      skip(1),
       debounceTime(300)
     ).subscribe(
       ()=> {
-        this.getInfo();
+        this.refreshInfo();
       }
     );
   }
 
   private getInfo() {
-    this.generalInfoService.getInfo('specTitle')
-      .subscribe({
-        next: data => {
-          this.title = data.content;
-        }
-      });
 
+    this.route.data.subscribe((data: any) => {
+      const resolved = data.specializationsPage;
+      if (isPlatformServer(this.platformId)) {
+        this.transferState.set(makeStateKey('specsPage'), resolved);
+      }
+      this.title = resolved.specTitle.content;
+      this.contactUs = resolved.contactBanner.content;
+      this.specializations = resolved.specs;
+    });
+
+  }
+
+  private refreshInfo() {
     const requests = [
       this.generalInfoService.getInfo("specTitle"),
       this.generalInfoService.getInfo("contactBanner"),
+      this.specializationService.getSpecializations()
     ];
 
     forkJoin(requests).subscribe({
-      next: (response: GeneralInfoDetails[]) => {
-        const [specTitleInfo, contactTitleInfo] = response;
+      next: (response: any) => {
+        const [specTitleInfo, contactTitleInfo, specializations] = response;
 
         this.title = specTitleInfo.content;
         this.contactUs = contactTitleInfo.content;
+        this.specializations = specializations;
       }
     })
-
-    this.specializationService.getSpecializations()
-      .subscribe({
-        next: data => {
-          this.specializations = data;
-        }
-      });
   }
 }

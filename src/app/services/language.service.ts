@@ -15,13 +15,14 @@ export class LanguageService{
   language$! : Observable<string>;
 
   private url: string = `${environment.apiUrl}/${environment.apiVersion}/language`;
+  private defaultLanguage = environment.defaultLanguage;
 
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService,
     private meta: Meta
   ) {
-    const savedLang = this.localStorage.getItem('lang') || 'pl';
+    const savedLang = this.localStorage.getItem('lang') || this.defaultLanguage;
     this.languageSubject = new BehaviorSubject(savedLang);
     this.language$ = this.languageSubject.asObservable().pipe(skip(0));
     this.localStorage.setItem('lang', savedLang);

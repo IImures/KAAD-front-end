@@ -8,14 +8,11 @@ import {retryInterceptor, setAuthHeader} from "./interceptors/AuthInterceptor";
 import {ErrorInterceptor} from "./interceptors/ErrorInterceptor";
 import {lastValueFrom} from "rxjs";
 import {HeaderService} from "./pages/header/header.service";
+import {cachingInterceptor} from "./interceptors/CacheInterceptor";
 
 export function initializeHeaderData(headerDataService: HeaderService) {
   return () => lastValueFrom(headerDataService.loadHeaderData());
 }
-
-// export function initializeLanguageService(languageService: LanguageService) {
-//   return (): void => languageService.init();
-// }
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,7 +23,11 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(
       withFetch(),
-      withInterceptors([setAuthHeader, retryInterceptor])
+      withInterceptors([
+        setAuthHeader,
+        retryInterceptor,
+        cachingInterceptor,
+      ])
      ),
     { provide: ErrorHandler, useClass: ErrorInterceptor },
     {

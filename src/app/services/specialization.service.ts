@@ -4,7 +4,6 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {LanguageService} from "./language.service";
 import {SpecializationDetails} from "../interfaces/specialization-details";
 import {SpecializationPageDetails} from "../interfaces/specialization-page-details";
-import {LanguageDetails} from "../interfaces/language-details";
 
 @Injectable({
   providedIn: 'root'
